@@ -28,7 +28,7 @@ export default function TestimonialsSection() {
     <section id="testimonials" className="relative py-32">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px" style={{ background: "linear-gradient(90deg, transparent, var(--accent) 50%, transparent)", opacity: 0.3 }} />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-20">
         <ScrollReveal className="text-center mb-20">
           <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--accent)] mb-4">Testimonials</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">What <span className="gradient-text">Clients</span> Say</h2>

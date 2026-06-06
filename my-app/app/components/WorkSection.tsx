@@ -63,7 +63,7 @@ export default function WorkSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-20">
         {/* Section header */}
         <ScrollReveal className="text-center mb-20">
           <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--accent)] mb-4">
