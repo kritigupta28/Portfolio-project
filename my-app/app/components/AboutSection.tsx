@@ -5,13 +5,12 @@ import ScrollReveal from "./ScrollReveal";
 export default function AboutSection() {
   return (
     <section id="about" className="relative py-32 overflow-hidden">
-      {/* Decorative gradient */}
+      {/* Decorative line */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent, var(--accent) 50%, transparent)",
-          opacity: 0.3,
+            "linear-gradient(90deg, transparent, var(--border-accent) 50%, transparent)",
         }}
       />
 
@@ -20,7 +19,7 @@ export default function AboutSection() {
           {/* Left: About text */}
           <div>
             <ScrollReveal>
-              <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--accent)] mb-4">
+              <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--text-secondary)] mb-4">
                 About Me
               </p>
             </ScrollReveal>
@@ -61,7 +60,7 @@ export default function AboutSection() {
                 ].map((tag) => (
                   <span
                     key={tag}
-                    className="px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300 cursor-default"
+                    className="px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)] transition-all duration-300 cursor-default"
                   >
                     {tag}
                   </span>
@@ -96,9 +95,9 @@ export default function AboutSection() {
                 ].map((item, i) => (
                   <div key={i} className="relative mb-12 last:mb-0">
                     {/* Timeline dot */}
-                    <div className="absolute -left-[calc(1rem+4.5px)] top-1.5 w-2.5 h-2.5 rounded-full bg-[var(--accent)] shadow-[0_0_10px_var(--accent-glow)]" />
+                    <div className="absolute -left-[calc(1rem+4.5px)] top-1.5 w-2.5 h-2.5 rounded-full bg-[var(--accent)] border border-[var(--bg-primary)]" />
 
-                    <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--accent)] mb-2">
+                    <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--text-secondary)] mb-2">
                       {item.year}
                     </p>
                     <h3 className="text-xl font-bold mb-1">{item.role}</h3>

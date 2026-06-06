@@ -5,14 +5,14 @@ import ScrollReveal from "./ScrollReveal";
 export default function ContactSection() {
   return (
     <section id="contact" className="relative py-32 bg-[var(--bg-secondary)]">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px" style={{ background: "linear-gradient(90deg, transparent, var(--accent) 50%, transparent)", opacity: 0.3 }} />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px" style={{ background: "linear-gradient(90deg, transparent, var(--border-accent) 50%, transparent)" }} />
 
-      {/* Background glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-10" style={{ background: "radial-gradient(circle, var(--gradient-start) 0%, transparent 70%)" }} />
+      {/* Subtle background glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-[0.04]" style={{ background: "radial-gradient(circle, var(--text-primary) 0%, transparent 70%)" }} />
 
       <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10">
         <ScrollReveal className="text-center mb-16">
-          <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--accent)] mb-4">Get In Touch</p>
+          <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--text-secondary)] mb-4">Get In Touch</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Let&apos;s <span className="gradient-text">Create</span> Together</h2>
           <p className="text-[var(--text-secondary)] max-w-lg mx-auto text-lg">Have a project in mind or just want to chat about design? I&apos;d love to hear from you.</p>
         </ScrollReveal>
@@ -56,7 +56,7 @@ export default function ContactSection() {
               { label: "Behance", icon: "Be", href: "#" },
               { label: "Twitter", icon: "𝕏", href: "#" },
             ].map((s) => (
-              <a key={s.label} href={s.href} id={`social-${s.label.toLowerCase()}`} className="w-12 h-12 rounded-full border border-[var(--border-subtle)] flex items-center justify-center text-sm font-bold text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] hover:bg-[var(--accent-glow)] transition-all duration-300" aria-label={s.label} title={s.label}>
+              <a key={s.label} href={s.href} id={`social-${s.label.toLowerCase()}`} className="w-12 h-12 rounded-full border border-[var(--border-subtle)] flex items-center justify-center text-sm font-bold text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card-hover)] transition-all duration-300" aria-label={s.label} title={s.label}>
                 {s.icon}
               </a>
             ))}

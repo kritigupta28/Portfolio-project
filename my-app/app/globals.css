@@ -1,23 +1,46 @@
 @import "tailwindcss";
 
-/* ─── Design Tokens ─── */
-:root {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #111118;
-  --bg-card: #16161f;
-  --bg-card-hover: #1c1c28;
-  --text-primary: #f0ece5;
-  --text-secondary: #9b97a0;
-  --text-muted: #6b6770;
-  --accent: #e8734a;
-  --accent-light: #f29e7e;
-  --accent-glow: rgba(232, 115, 74, 0.25);
-  --gradient-start: #e8734a;
-  --gradient-end: #d4508a;
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-accent: rgba(232, 115, 74, 0.3);
-  --glass-bg: rgba(22, 22, 31, 0.7);
+/* ─── Design Tokens — Dark Mode (default) ─── */
+:root,
+[data-theme="dark"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #111111;
+  --bg-card-hover: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #555555;
+  --accent: #ffffff;
+  --accent-brand: #ffffff;
+  --accent-light: #e0e0e0;
+  --accent-glow: rgba(255, 255, 255, 0.08);
+  --gradient-start: #ffffff;
+  --gradient-end: #a0a0a0;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(255, 255, 255, 0.25);
+  --glass-bg: rgba(17, 17, 17, 0.75);
   --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Design Tokens — Light Mode ─── */
+[data-theme="light"] {
+  --bg-primary: #fafafa;
+  --bg-secondary: #f0f0f0;
+  --bg-card: #f0f0f0;
+  --bg-card-hover: #e4e4e4;
+  --text-primary: #0a0a0a;
+  --text-secondary: #404040;
+  --text-muted: #888888;
+  --accent: #0a0a0a;
+  --accent-brand: #0a0a0a;
+  --accent-light: #333333;
+  --accent-glow: rgba(0, 0, 0, 0.08);
+  --gradient-start: #0a0a0a;
+  --gradient-end: #404040;
+  --border-subtle: rgba(0, 0, 0, 0.1);
+  --border-accent: rgba(0, 0, 0, 0.35);
+  --glass-bg: rgba(240, 240, 240, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.1);
 }
 
 @theme inline {
@@ -43,6 +66,7 @@ body {
   color: var(--text-primary);
   font-family: var(--font-sans, 'Inter', system-ui, -apple-system, sans-serif);
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
@@ -58,7 +82,7 @@ body {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--accent);
+  background: var(--border-accent);
   border-radius: 100px;
 }
 
@@ -173,7 +197,7 @@ body {
 
 /* ─── Accent Glow ─── */
 .accent-glow {
-  box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(232, 115, 74, 0.1);
+  box-shadow: 0 0 30px var(--accent-glow), 0 0 60px var(--accent-glow);
 }
 
 /* ─── Section Reveal on Scroll ─── */
@@ -210,7 +234,7 @@ body {
 .skill-bar-fill {
   height: 100%;
   border-radius: 100px;
-  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  background: var(--accent);
   transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -226,7 +250,7 @@ body {
 .project-card:hover {
   transform: translateY(-8px);
   border-color: var(--border-accent);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px var(--accent-glow);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 .project-card .project-image {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -237,7 +261,7 @@ body {
 .project-card .project-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 30%, rgba(10, 10, 15, 0.95) 100%);
+  background: linear-gradient(180deg, transparent 30%, rgba(10, 10, 10, 0.95) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -258,7 +282,7 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  background: var(--accent);
   border-radius: 100px;
   transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -275,8 +299,8 @@ body {
   align-items: center;
   gap: 8px;
   padding: 14px 32px;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-  color: white;
+  background: var(--accent);
+  color: var(--bg-primary);
   font-weight: 600;
   border-radius: 100px;
   border: none;
@@ -285,21 +309,10 @@ body {
   position: relative;
   overflow: hidden;
 }
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--gradient-end), var(--gradient-start));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: inherit;
-}
-.btn-primary:hover::before {
-  opacity: 1;
-}
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px var(--accent-glow);
+  opacity: 0.9;
 }
 .btn-primary span {
   position: relative;
@@ -315,15 +328,15 @@ body {
   color: var(--text-primary);
   font-weight: 600;
   border-radius: 100px;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-accent);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .btn-outline:hover {
   border-color: var(--accent);
-  color: var(--accent);
+  background: var(--accent);
+  color: var(--bg-primary);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(232, 115, 74, 0.1);
 }
 
 /* ─── Testimonial Card ─── */
@@ -347,10 +360,7 @@ body {
 .stat-number {
   font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-primary);
   line-height: 1;
 }
 .stat-label {
@@ -420,6 +430,5 @@ body {
 }
 .custom-cursor.expand {
   transform: scale(3);
-  background: var(--accent-light);
   opacity: 0.5;
 }

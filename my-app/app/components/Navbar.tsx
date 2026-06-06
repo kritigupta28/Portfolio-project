@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -51,18 +52,21 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <ThemeToggle />
           <a href="#contact" className="btn-primary text-sm" id="nav-cta">
             <span>Let&apos;s Talk</span>
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          id="mobile-menu-toggle"
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
+        {/* Mobile right controls */}
+        <div className="md:hidden flex items-center gap-3">
+          <ThemeToggle />
+          <button
+            id="mobile-menu-toggle"
+            className="flex flex-col gap-1.5 p-2"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
           <span
             className={`block w-6 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${
               mobileOpen ? "rotate-45 translate-y-2" : ""
@@ -78,7 +82,8 @@ export default function Navbar() {
               mobileOpen ? "-rotate-45 -translate-y-2" : ""
             }`}
           />
-        </button>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

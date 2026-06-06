@@ -10,19 +10,19 @@ export default function HeroSection() {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Large gradient orb */}
+        {/* Subtle radial orbs using neutral tones */}
         <div
-          className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full opacity-20 animate-float"
+          className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full opacity-[0.06] animate-float"
           style={{
             background:
-              "radial-gradient(circle, var(--gradient-start) 0%, transparent 70%)",
+              "radial-gradient(circle, var(--text-primary) 0%, transparent 70%)",
           }}
         />
         <div
-          className="absolute -bottom-48 -left-48 w-[500px] h-[500px] rounded-full opacity-15 animate-float-reverse"
+          className="absolute -bottom-48 -left-48 w-[500px] h-[500px] rounded-full opacity-[0.04] animate-float-reverse"
           style={{
             background:
-              "radial-gradient(circle, var(--gradient-end) 0%, transparent 70%)",
+              "radial-gradient(circle, var(--text-secondary) 0%, transparent 70%)",
           }}
         />
         {/* Grid pattern */}
@@ -36,7 +36,7 @@ export default function HeroSection() {
         {/* Orbiting dot */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="animate-orbit">
-            <div className="w-2 h-2 rounded-full bg-[var(--accent)] animate-glow-pulse" />
+            <div className="w-2 h-2 rounded-full bg-[var(--text-secondary)] animate-glow-pulse" />
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@ export default function HeroSection() {
           {/* Text Side */}
           <div className="order-2 md:order-1 text-center md:text-left">
             <div className="animate-slide-up">
-              <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--accent)] mb-6">
+              <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--text-secondary)] mb-6">
                 Senior UI/UX Designer
               </p>
             </div>
@@ -89,7 +89,7 @@ export default function HeroSection() {
                 { number: "30+", label: "Happy Clients" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center md:text-left">
-                  <p className="text-2xl font-bold gradient-text">
+                  <p className="text-2xl font-bold text-[var(--text-primary)]">
                     {stat.number}
                   </p>
                   <p className="text-xs text-[var(--text-muted)] mt-1 tracking-wider uppercase">
@@ -103,15 +103,15 @@ export default function HeroSection() {
           {/* Image Side */}
           <div className="order-1 md:order-2 flex justify-center">
             <div className="relative animate-fade-in">
-              {/* Glow ring behind image */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--gradient-start)] to-[var(--gradient-end)] opacity-20 blur-3xl animate-glow-pulse" />
+              {/* Subtle glow ring behind image */}
+              <div className="absolute inset-0 rounded-full bg-[var(--text-primary)] opacity-[0.05] blur-3xl animate-glow-pulse" />
 
               {/* Decorative ring */}
               <div className="absolute -inset-4 rounded-full border border-[var(--border-accent)] animate-spin-slow" />
               <div className="absolute -inset-8 rounded-full border border-[var(--border-subtle)]" />
 
               {/* Image */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-[var(--border-accent)] accent-glow">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border border-[var(--border-accent)] accent-glow">
                 <Image
                   src="/profile.png"
                   alt="Kriti Gupta — Senior UI/UX Designer"
@@ -145,7 +145,7 @@ export default function HeroSection() {
           Scroll
         </span>
         <div className="w-5 h-8 rounded-full border border-[var(--text-muted)] flex items-start justify-center p-1">
-          <div className="w-1 h-2 rounded-full bg-[var(--accent)] animate-float" />
+          <div className="w-1 h-2 rounded-full bg-[var(--text-secondary)] animate-float" />
         </div>
       </div>
     </section>
