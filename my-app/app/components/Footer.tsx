@@ -15,8 +15,8 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <a href="#" className="text-xl font-bold gradient-text">KG<span className="text-[var(--text-muted)]">.</span></a>
-          <p className="text-sm text-[var(--text-muted)]">© {new Date().getFullYear()} Kriti Gupta. Crafted with care & lots of coffee.</p>
-          <a href="#hero" className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" id="back-to-top">↑ Back to top</a>
+          <p className="text-sm text-[var(--text-muted)]">© {new Date().getFullYear()} Kriti Gupta. Crafted with ❤️ & lots of coffee.</p>
+          <a href="#hero" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors" id="back-to-top">↑ Back to top</a>
         </div>
       </div>
     </footer>

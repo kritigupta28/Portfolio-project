@@ -13,7 +13,7 @@ const projects = [
       "A comprehensive fitness tracking experience with real-time analytics, personalized workout plans, and an intuitive dashboard that keeps users motivated.",
     image: "/project-fintrack.png",
     tags: ["Figma", "Prototyping", "User Research"],
-    color: "from-white/5 to-white/10",
+    color: "from-purple-500/20 to-pink-500/20",
   },
   {
     id: "luxemart",
@@ -24,7 +24,7 @@ const projects = [
       "A premium shopping experience with elegant product displays, seamless checkout, and a design system that elevates the brand's luxury positioning.",
     image: "/project-luxemart.png",
     tags: ["Design System", "Responsive", "A/B Testing"],
-    color: "from-white/5 to-white/10",
+    color: "from-amber-500/20 to-rose-500/20",
   },
   {
     id: "zenspace",
@@ -35,7 +35,7 @@ const projects = [
       "A calming wellness companion featuring guided meditations, breathing exercises, and sleep tracking — designed to promote mental wellbeing.",
     image: "/project-zenspace.png",
     tags: ["UX Research", "Motion Design", "Accessibility"],
-    color: "from-white/5 to-white/10",
+    color: "from-teal-500/20 to-emerald-500/20",
   },
   {
     id: "wanderlust",
@@ -46,26 +46,27 @@ const projects = [
       "An immersive travel booking platform with rich destination storytelling, dynamic itinerary builders, and a frictionless booking flow.",
     image: "/project-wanderlust.png",
     tags: ["Wireframing", "Visual Design", "Usability Testing"],
-    color: "from-white/5 to-white/10",
+    color: "from-orange-500/20 to-sky-500/20",
   },
 ];
 
 export default function WorkSection() {
   return (
     <section id="work" className="relative py-32">
-      {/* Decorative line */}
+      {/* Decorative gradient line */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px"
         style={{
           background:
-            "linear-gradient(90deg, transparent, var(--border-accent) 50%, transparent)",
+            "linear-gradient(90deg, transparent, var(--accent) 50%, transparent)",
+          opacity: 0.3,
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-20">
         {/* Section header */}
         <ScrollReveal className="text-center mb-20">
-          <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--text-secondary)] mb-4">
+          <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--accent)] mb-4">
             Selected Work
           </p>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -95,7 +96,7 @@ export default function WorkSection() {
                   />
                   {/* Hover overlay */}
                   <div className="project-overlay z-20 flex items-end p-6">
-                    <span className="text-sm font-semibold tracking-wider uppercase text-[var(--text-primary)]">
+                    <span className="text-sm font-semibold tracking-wider uppercase text-[var(--accent)]">
                       View Case Study →
                     </span>
                   </div>
@@ -103,10 +104,10 @@ export default function WorkSection() {
 
                 {/* Content */}
                 <div className="p-6 md:p-8">
-                  <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--text-secondary)] mb-3">
+                  <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--accent)] mb-3">
                     {project.category}
                   </p>
-                  <h3 className="text-2xl font-bold mb-2 group-hover:text-[var(--text-primary)] transition-colors">
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-[var(--accent)] transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-sm text-[var(--text-muted)] mb-1">
