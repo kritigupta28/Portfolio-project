@@ -2,25 +2,47 @@
 @source "../app";
 @source "../components";
 @source ".";
-/* ─── Design Tokens ─── */
-:root {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #111118;
-  --bg-card: #16161f;
-  --bg-card-hover: #1c1c28;
-  --text-primary: #f0ece5;
-  --text-secondary: #9b97a0;
-  --text-muted: #6b6770;
-  --accent: #e8734a;
-  --accent-brand: #ff4f1e;
-  --accent-light: #f29e7e;
-  --accent-glow: rgba(232, 115, 74, 0.25);
-  --gradient-start: #e8734a;
-  --gradient-end: #d4508a;
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-accent: rgba(232, 115, 74, 0.3);
-  --glass-bg: rgba(22, 22, 31, 0.7);
+/* ─── Design Tokens — Dark Mode (default) ─── */
+:root,
+[data-theme="dark"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #161616;
+  --bg-card-hover: #1c1c1c;
+  --text-primary: #ffffff;
+  --text-secondary: #999999;
+  --text-muted: #555555;
+  --accent: #ffffff;
+  --accent-brand: #ffffff;
+  --accent-light: #cccccc;
+  --accent-glow: rgba(255, 255, 255, 0.08);
+  --gradient-start: #ffffff;
+  --gradient-end: #aaaaaa;
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(255, 255, 255, 0.2);
+  --glass-bg: rgba(16, 16, 16, 0.75);
   --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Design Tokens — Light Mode ─── */
+[data-theme="light"] {
+  --bg-primary: #fafafa;
+  --bg-secondary: #f0f0f0;
+  --bg-card: #ebebeb;
+  --bg-card-hover: #e0e0e0;
+  --text-primary: #0a0a0a;
+  --text-secondary: #555555;
+  --text-muted: #999999;
+  --accent: #0a0a0a;
+  --accent-brand: #0a0a0a;
+  --accent-light: #333333;
+  --accent-glow: rgba(0, 0, 0, 0.08);
+  --gradient-start: #0a0a0a;
+  --gradient-end: #444444;
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-accent: rgba(0, 0, 0, 0.2);
+  --glass-bg: rgba(240, 240, 240, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.08);
 }
 
 @theme inline {
@@ -46,6 +68,7 @@
     color: var(--text-primary);
     font-family: var(--font-sans, 'Inter', system-ui, -apple-system, sans-serif);
     overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 }
 
@@ -495,6 +518,116 @@
 /* ─── Magnetic Effect (used via JS) ─── */
 .magnetic {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── 2.5D Honeycomb Toolkit ─── */
+.honeycomb {
+  perspective: 1100px;
+}
+
+.honeycomb-inner {
+  transform: rotateX(14deg);
+  transform-style: preserve-3d;
+}
+
+.hex-row {
+  display: flex;
+  justify-content: center;
+}
+
+/* pointy-top regular hexagon */
+.hex {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hex-tile {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+/* extruded side wall — sits below the face to fake thickness */
+.hex-edge {
+  position: absolute;
+  inset: 0;
+  background: var(--border-accent);
+  transform: translateY(11px);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.45s ease;
+}
+
+/* the top face that carries the icon */
+.hex-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  background-image: linear-gradient(155deg, var(--bg-card-hover) 0%, var(--bg-card) 45%, var(--bg-secondary) 100%);
+  color: var(--text-secondary);
+  transform: scale(0.93) translateZ(0);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.45s ease, filter 0.45s ease;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+}
+
+.hex-tile:hover .hex-face {
+  transform: scale(0.93) translateZ(46px);
+  color: var(--text-primary);
+  filter: drop-shadow(0 22px 24px rgba(0, 0, 0, 0.4));
+}
+
+.hex-tile:hover .hex-edge {
+  transform: translateY(20px);
+  background: var(--text-muted);
+}
+
+.hex-face svg {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hex-tile:hover .hex-face svg {
+  transform: scale(1.12);
+}
+
+@keyframes hex-bob {
+  0%, 100% { transform: translateZ(0); }
+  50% { transform: translateZ(14px); }
+}
+
+/* ─── Signature Process Stepper ─── */
+.process-line {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--border-subtle);
+  overflow: hidden;
+}
+
+.process-line-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-line-fill.run {
+  transform: scaleX(1);
+}
+
+.process-node {
+  transition: border-color 0.4s ease, color 0.4s ease, background 0.4s ease, transform 0.4s ease;
+}
+
+.process-step:hover .process-node {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--bg-card-hover);
 }
 
 /* ─── Elastic Cursor (precise core + lagging, stretching ring) ─── */

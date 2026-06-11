@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -20,40 +21,44 @@ export default function Navbar() {
           scrolled ? "top-4" : "top-8"
         }`}
       >
-        <div className="bg-[#111111]/90 border border-white/10 rounded-full px-8 py-4 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-md">
+        <div className="bg-[var(--bg-card)]/90 border border-[var(--border-subtle)] rounded-full px-8 py-4 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.3)] backdrop-blur-md">
           {/* Left Links */}
           <div className="hidden md:flex items-center justify-end gap-8 flex-1">
-            <a href="#home" className="text-white text-sm font-medium hover:text-[var(--accent-brand)] transition-colors">Home</a>
-            <a href="#about" className="text-gray-300 text-sm font-medium hover:text-white transition-colors">About</a>
-            <a href="#skills" className="text-gray-300 text-sm font-medium hover:text-white transition-colors">Skills</a>
+            <a href="#home" className="text-[var(--text-primary)] text-sm font-medium hover:text-[var(--accent-brand)] transition-colors">Home</a>
+            <a href="#about" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">About</a>
+            <a href="#skills" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Skills</a>
           </div>
 
           {/* Logo (Center) */}
           <div className="flex items-center gap-2 mx-8 shrink-0">
-            <div className="w-8 h-8 rounded-full bg-[var(--accent-brand)] flex items-center justify-center text-white font-bold text-sm shadow-[0_0_15px_var(--accent-brand)]">
+            <div className="w-8 h-8 rounded-full bg-[var(--accent-brand)] flex items-center justify-center text-[var(--bg-primary)] font-bold text-sm border border-[var(--border-accent)]">
               K
             </div>
-            <span className="text-white font-bold text-base tracking-wide">Kriti</span>
+            <span className="text-[var(--text-primary)] font-bold text-base tracking-wide">Kriti</span>
           </div>
 
           {/* Right Links */}
           <div className="hidden md:flex items-center justify-start gap-8 flex-1">
-            <a href="#work" className="text-gray-300 text-sm font-medium hover:text-white transition-colors">Project</a>
-            <a href="#testimonials" className="text-gray-300 text-sm font-medium hover:text-white transition-colors">Testimonials</a>
-            <a href="#contact" className="text-gray-300 text-sm font-medium hover:text-white transition-colors">Contact Us</a>
+            <a href="#work" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Project</a>
+            <a href="#testimonials" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Testimonials</a>
+            <a href="#contact" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Contact Us</a>
+            <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            id="mobile-menu-toggle"
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-          </button>
+          {/* Mobile right controls */}
+          <div className="md:hidden flex items-center gap-3">
+            <ThemeToggle />
+            <button
+              id="mobile-menu-toggle"
+              className="flex flex-col gap-1.5 p-2"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -63,13 +68,10 @@ export default function Navbar() {
           mobileOpen ? "max-h-96 opacity-100 visible" : "max-h-0 opacity-0 invisible"
         }`}
       >
-        <div className="bg-[#111111]/95 backdrop-blur-xl border border-white/10 p-6 flex flex-col gap-5 items-center shadow-2xl">
-          <a href="#home" className="text-white text-base font-medium" onClick={() => setMobileOpen(false)}>Home</a>
-          <a href="#about" className="text-gray-300 text-base font-medium" onClick={() => setMobileOpen(false)}>About</a>
-          <a href="#skills" className="text-gray-300 text-base font-medium" onClick={() => setMobileOpen(false)}>Skills</a>
-          <a href="#work" className="text-gray-300 text-base font-medium" onClick={() => setMobileOpen(false)}>Project</a>
-          <a href="#testimonials" className="text-gray-300 text-base font-medium" onClick={() => setMobileOpen(false)}>Testimonials</a>
-          <a href="#contact" className="text-gray-300 text-base font-medium" onClick={() => setMobileOpen(false)}>Contact Us</a>
+        <div className="bg-[var(--bg-card)]/95 backdrop-blur-xl border border-[var(--border-subtle)] p-6 flex flex-col gap-5 items-center shadow-2xl">
+          {[["#home","Home"],["#about","About"],["#skills","Skills"],["#work","Project"],["#testimonials","Testimonials"],["#contact","Contact Us"]].map(([href, label]) => (
+            <a key={href} href={href} className="text-[var(--text-secondary)] text-base font-medium hover:text-[var(--text-primary)] transition-colors" onClick={() => setMobileOpen(false)}>{label}</a>
+          ))}
         </div>
       </div>
     </>
