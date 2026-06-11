@@ -10,7 +10,7 @@ export default function ContactSection() {
       {/* Background glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-10" style={{ background: "radial-gradient(circle, var(--gradient-start) 0%, transparent 70%)" }} />
 
-      <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-4xl mx-auto px-8 md:px-16 lg:px-20 relative z-10">
         <ScrollReveal className="text-center mb-16">
           <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--accent)] mb-4">Get In Touch</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Let&apos;s <span className="gradient-text">Create</span> Together</h2>

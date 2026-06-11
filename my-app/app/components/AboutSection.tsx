@@ -15,7 +15,7 @@ export default function AboutSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-6xl mx-auto px-8 md:px-16 lg:px-20">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Left: About text */}
           <div>

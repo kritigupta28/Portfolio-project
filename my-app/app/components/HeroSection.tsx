@@ -1,151 +1,87 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function HeroSection() {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      id="home"
+      className="relative min-h-[100svh] bg-[var(--bg-primary)] overflow-hidden flex flex-col items-center justify-center pt-32 pb-20 md:pt-48 md:pb-32"
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Large gradient orb */}
-        <div
-          className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full opacity-20 animate-float"
-          style={{
-            background:
-              "radial-gradient(circle, var(--gradient-start) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute -bottom-48 -left-48 w-[500px] h-[500px] rounded-full opacity-15 animate-float-reverse"
-          style={{
-            background:
-              "radial-gradient(circle, var(--gradient-end) 0%, transparent 70%)",
-          }}
-        />
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(var(--text-primary) 1px, transparent 1px), linear-gradient(90deg, var(--text-primary) 1px, transparent 1px)`,
-            backgroundSize: "80px 80px",
-          }}
-        />
-        {/* Orbiting dot */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="animate-orbit">
-            <div className="w-2 h-2 rounded-full bg-[var(--accent)] animate-glow-pulse" />
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 flex flex-col items-center mt-12 md:mt-0">
+
+        {/* Hello Badge */}
+        {/* <div className={`mb-8 px-6 py-2.5 rounded-full border border-white/10 bg-[var(--bg-card)]/80 backdrop-blur-md shadow-lg flex items-center gap-3 transition-all duration-700 ease-out z-20 relative ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <span className="text-white font-semibold tracking-wide text-sm">Hello!</span>
+          <span className="text-lg">👋</span>
+        </div> */}
+
+        {/* Heading */}
+        <h1 className={`relative z-10 text-4xl sm:text-5xl md:text-7xl lg:text-[88px] font-extrabold text-[var(--text-primary)] text-center leading-[1.05] tracking-tight transition-all duration-700 delay-100 ease-out ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          I'm <span className="text-[var(--accent-brand)]">Kriti</span>,<br /><span className="[word-spacing:1.3em]">Product Designer</span>
+        </h1>
+
+        {/* Center Image and Stats Container */}
+        <div className="relative w-full flex justify-center -mt-10 sm:-mt-16 md:-mt-28 lg:-mt-32">
+
+
+          {/* Left Stat - Quote (no card, matches reference) */}
+          <div className={`absolute left-0 md:left-4 bottom-24 lg:bottom-[345px] max-w-[230px] z-30 hidden lg:block transition-all duration-700 delay-300 ease-out ${loaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+            <div className="text-[var(--accent-brand)] text-6xl font-serif leading-none mb-1">&ldquo;</div>
+            <p className="text-[var(--text-secondary)] text-sm md:text-base mb-6 leading-relaxed font-medium">
+              Kriti's exceptional product design ensured our website's success. Highly recommended!
+            </p>
+            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">450+</p>
+            <p className="text-[var(--text-muted)] text-xs md:text-sm font-semibold uppercase tracking-wider mt-1">Client Served</p>
           </div>
-        </div>
-      </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-8 items-center">
-          {/* Text Side */}
-          <div className="order-2 md:order-1 text-center md:text-left">
-            <div className="animate-slide-up">
-              <p className="text-sm font-semibold tracking-[0.3em] uppercase text-[var(--accent)] mb-6">
-                Senior UI/UX Designer
-              </p>
-            </div>
-
-            <div className="animate-slide-up delay-200">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
-                Hi, I&apos;m{" "}
-                <span className="gradient-text">Kriti</span>
-                <br />
-                <span className="text-[var(--text-secondary)]">
-                  Gupta
-                </span>
-              </h1>
-            </div>
-
-            <div className="animate-slide-up delay-400">
-              <p className="text-lg text-[var(--text-secondary)] max-w-lg mx-auto md:mx-0 mb-10 leading-relaxed">
-                I craft intuitive digital experiences where aesthetics meet
-                function. Turning complex problems into elegant, user-centered
-                solutions.
-              </p>
-            </div>
-
-            <div className="animate-slide-up delay-600 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <a href="#work" className="btn-primary" id="hero-cta-work">
-                <span>View My Work</span>
-                <span className="relative z-[1]">→</span>
-              </a>
-              <a href="#contact" className="btn-outline" id="hero-cta-contact">
-                Get In Touch
-              </a>
-            </div>
-
-            {/* Quick stats */}
-            <div className="animate-slide-up delay-800 mt-14 flex gap-10 justify-center md:justify-start">
-              {[
-                { number: "7+", label: "Years Exp." },
-                { number: "50+", label: "Projects" },
-                { number: "30+", label: "Happy Clients" },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center md:text-left">
-                  <p className="text-2xl font-bold gradient-text">
-                    {stat.number}
-                  </p>
-                  <p className="text-xs text-[var(--text-muted)] mt-1 tracking-wider uppercase">
-                    {stat.label}
-                  </p>
-                </div>
+          {/* Right Stat - Experts (no card, matches reference) */}
+          <div className={`absolute right-0 md:right-4 bottom-32 lg:bottom-[375px] z-30 hidden lg:block text-right transition-all duration-700 delay-400 ease-out ${loaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+            <div className="flex justify-end gap-1.5 mb-3">
+              {[...Array(5)].map((_, i) => (
+                <span key={i} className="text-[var(--accent-brand)] text-xl ">★</span>
               ))}
             </div>
+            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">7 Years</p>
+            <p className="text-[var(--text-muted)] text-xs md:text-sm font-semibold uppercase tracking-wider mt-2">Experts</p>
+            <div className="w-28 h-px bg-white/30 mt-4 ml-auto" />
           </div>
 
-          {/* Image Side */}
-          <div className="order-1 md:order-2 flex justify-center">
-            <div className="relative animate-fade-in">
-              {/* Glow ring behind image */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--gradient-start)] to-[var(--gradient-end)] opacity-20 blur-3xl animate-glow-pulse" />
-
-              {/* Decorative ring */}
-              <div className="absolute -inset-4 rounded-full border border-[var(--border-accent)] animate-spin-slow" />
-              <div className="absolute -inset-8 rounded-full border border-[var(--border-subtle)]" />
-
-              {/* Image */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 border-[var(--border-accent)] accent-glow">
-                <Image
-                  src="/profile.png"
-                  alt="Kriti Gupta — Senior UI/UX Designer"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-
-              {/* Floating badges */}
-              <div className="absolute -right-4 top-8 glass rounded-xl px-4 py-3 animate-float">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🎨</span>
-                  <span className="text-xs font-semibold">UI Design</span>
-                </div>
-              </div>
-              <div className="absolute -left-4 bottom-16 glass rounded-xl px-4 py-3 animate-float-reverse">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">✨</span>
-                  <span className="text-xs font-semibold">UX Strategy</span>
-                </div>
-              </div>
-            </div>
+          {/* Profile Image — keeps full footprint, lower body fades out (cuts mid-body) */}
+          <div className={`relative w-[320px] sm:w-[420px] md:w-[580px] h-[400px] sm:h-[500px] md:h-[700px] z-20 [mask-image:linear-gradient(to_bottom,#000_85%,transparent_100%)] transition-all duration-1000 delay-200 ease-out ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <Image
+              src="/my image.png"
+              alt="Kriti Gupta"
+              fill
+              className="object-contain object-bottom"
+              priority
+            />
           </div>
-        </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in delay-800">
-        <span className="text-[10px] tracking-[0.3em] uppercase text-[var(--text-muted)]">
-          Scroll
-        </span>
-        <div className="w-5 h-8 rounded-full border border-[var(--text-muted)] flex items-start justify-center p-1">
-          <div className="w-1 h-2 rounded-full bg-[var(--accent)] animate-float" />
+          {/* Download Resume Button */}
+          <div className={`absolute bottom-16 md:bottom-24 z-40 flex justify-center transition-all duration-700 delay-500 ease-out ${loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+            <a
+              href="/resume.pdf"
+              download="Kriti_Gupta_Resume.pdf"
+              className="bg-[var(--accent-brand)] text-[var(--bg-primary)] px-10 md:px-14 py-4 md:py-5 rounded-full font-bold border border-[var(--border-accent)] hover:-translate-y-1 hover:opacity-90 transition-all flex items-center gap-3 text-base md:text-lg tracking-wide shadow-[0_8px_30px_rgba(0,0,0,0.15)]"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Download Resume
+            </a>
+          </div>
+
         </div>
       </div>
     </section>

@@ -1,112 +1,79 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
-  { label: "Skills", href: "#skills" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
-];
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav
-      id="navbar"
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        scrolled
-          ? "glass py-3"
-          : "bg-transparent py-6"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        {/* Logo */}
-        <a
-          href="#"
-          id="nav-logo"
-          className="text-xl font-bold tracking-tight gradient-text"
-        >
-          KG<span className="text-[var(--text-muted)]">.</span>
-        </a>
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              id={`nav-${link.label.toLowerCase()}`}
-              className="nav-link text-sm font-medium tracking-wide uppercase"
-            >
-              {link.label}
-            </a>
-          ))}
-          <a href="#contact" className="btn-primary text-sm" id="nav-cta">
-            <span>Let&apos;s Talk</span>
-          </a>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          id="mobile-menu-toggle"
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          <span
-            className={`block w-6 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${
-              mobileOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${
-              mobileOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${
-              mobileOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          />
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-500 ${
-          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+    <>
+      <nav
+        id="navbar"
+        className={`fixed left-1/2 -translate-x-1/2 z-[100] transition-all duration-500 w-full px-6 max-w-5xl ${
+          scrolled ? "top-4" : "top-8"
         }`}
       >
-        <div className="glass mx-6 mt-4 rounded-2xl p-6 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="nav-link text-sm font-medium tracking-wide uppercase py-2"
-              onClick={() => setMobileOpen(false)}
+        <div className="bg-[var(--bg-card)]/90 border border-[var(--border-subtle)] rounded-full px-8 py-4 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.3)] backdrop-blur-md">
+          {/* Left Links */}
+          <div className="hidden md:flex items-center justify-end gap-8 flex-1">
+            <a href="#home" className="text-[var(--text-primary)] text-sm font-medium hover:text-[var(--accent-brand)] transition-colors">Home</a>
+            <a href="#about" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">About</a>
+            <a href="#skills" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Skills</a>
+          </div>
+
+          {/* Logo (Center) */}
+          <div className="flex items-center gap-2 mx-8 shrink-0">
+            <div className="w-8 h-8 rounded-full bg-[var(--accent-brand)] flex items-center justify-center text-[var(--bg-primary)] font-bold text-sm border border-[var(--border-accent)]">
+              K
+            </div>
+            <span className="text-[var(--text-primary)] font-bold text-base tracking-wide">Kriti</span>
+          </div>
+
+          {/* Right Links */}
+          <div className="hidden md:flex items-center justify-start gap-8 flex-1">
+            <a href="#work" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Project</a>
+            <a href="#testimonials" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Testimonials</a>
+            <a href="#contact" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Contact Us</a>
+            <ThemeToggle />
+          </div>
+
+          {/* Mobile right controls */}
+          <div className="md:hidden flex items-center gap-3">
+            <ThemeToggle />
+            <button
+              id="mobile-menu-toggle"
+              className="flex flex-col gap-1.5 p-2"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
             >
-              {link.label}
-            </a>
+              <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Dropdown */}
+      <div
+        className={`fixed top-24 left-1/2 -translate-x-1/2 w-[90%] z-[90] md:hidden overflow-hidden transition-all duration-500 rounded-2xl ${
+          mobileOpen ? "max-h-96 opacity-100 visible" : "max-h-0 opacity-0 invisible"
+        }`}
+      >
+        <div className="bg-[var(--bg-card)]/95 backdrop-blur-xl border border-[var(--border-subtle)] p-6 flex flex-col gap-5 items-center shadow-2xl">
+          {[["#home","Home"],["#about","About"],["#skills","Skills"],["#work","Project"],["#testimonials","Testimonials"],["#contact","Contact Us"]].map(([href, label]) => (
+            <a key={href} href={href} className="text-[var(--text-secondary)] text-base font-medium hover:text-[var(--text-primary)] transition-colors" onClick={() => setMobileOpen(false)}>{label}</a>
           ))}
-          <a
-            href="#contact"
-            className="btn-primary text-sm text-center justify-center mt-2"
-            onClick={() => setMobileOpen(false)}
-          >
-            <span>Let&apos;s Talk</span>
-          </a>
         </div>
       </div>
-    </nav>
+    </>
   );
 }
