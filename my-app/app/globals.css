@@ -160,6 +160,39 @@
 }
 
 @layer utilities {
+  [data-theme="dark"] .show-in-light { display: none !important; }
+  [data-theme="light"] .show-in-dark { display: none !important; }
+
+/* ─── Pattern Reveal Effect ─── */
+.blend-mehndi {
+  mix-blend-mode: multiply;
+}
+[data-theme="dark"] .blend-mehndi {
+  mix-blend-mode: lighten;
+}
+
+.mask-mehndi {
+  -webkit-mask-image: 
+    radial-gradient(circle at top right, black 100%, transparent 100%),
+    radial-gradient(circle at bottom left, black 100%, transparent 100%);
+  mask-image: 
+    radial-gradient(circle at top right, black 100%, transparent 100%),
+    radial-gradient(circle at bottom left, black 100%, transparent 100%);
+  -webkit-mask-position: top right, bottom left;
+  mask-position: top right, bottom left;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 0px 0px, 0px 0px;
+  mask-size: 0px 0px, 0px 0px;
+  transition: -webkit-mask-size 2.5s cubic-bezier(0.16, 1, 0.3, 1), mask-size 2.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 2.5s ease;
+  opacity: 0;
+}
+
+.mask-mehndi-loaded {
+  -webkit-mask-size: 150vmax 150vmax, 150vmax 150vmax;
+  mask-size: 150vmax 150vmax, 150vmax 150vmax;
+  opacity: 0.15; /* reduced opacity */
+}
 
 /* ─── Animation Utilities ─── */
 .animate-float {

@@ -16,6 +16,24 @@ export default function HeroSection() {
       id="home"
       className="relative min-h-[100svh] bg-[var(--bg-primary)] overflow-hidden flex flex-col items-center justify-center pt-32 pb-20 md:pt-48 md:pb-32"
     >
+      {/* Floral Background Assets for lg and above */}
+      <div className={`absolute inset-0 z-0 hidden lg:block pointer-events-none mask-mehndi blend-mehndi ${loaded ? 'mask-mehndi-loaded' : ''}`}>
+        <Image
+          src="/mehndi_asset.png"
+          alt="Floral Pattern Light"
+          fill
+          className="object-cover object-center show-in-light"
+          priority
+        />
+        <Image
+          src="/mehndi_asset_dark.png"
+          alt="Floral Pattern Dark"
+          fill
+          className="object-cover object-center show-in-dark"
+          priority
+        />
+      </div>
+
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 flex flex-col items-center mt-12 md:mt-0">
 
         {/* Hello Badge */}
@@ -26,7 +44,7 @@ export default function HeroSection() {
 
         {/* Heading */}
         <h1 className={`relative z-10 text-4xl sm:text-5xl md:text-7xl lg:text-[88px] font-extrabold text-[var(--text-primary)] text-center leading-[1.05] tracking-tight transition-all duration-700 delay-100 ease-out ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          I'm <span className="text-[var(--accent-brand)]">Kriti</span>,<br /><span className="[word-spacing:1.3em]">Product Designer</span>
+          I&apos;m <span className="text-[var(--accent-brand)]">Kriti</span>,<br /><span className="[word-spacing:1.3em]">Product Designer</span>
         </h1>
 
         {/* Center Image and Stats Container */}
@@ -37,7 +55,7 @@ export default function HeroSection() {
           <div className={`absolute left-0 md:left-4 bottom-24 lg:bottom-[345px] max-w-[230px] z-30 hidden lg:block transition-all duration-700 delay-300 ease-out ${loaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <div className="text-[var(--accent-brand)] text-6xl font-serif leading-none mb-1">&ldquo;</div>
             <p className="text-[var(--text-secondary)] text-sm md:text-base mb-6 leading-relaxed font-medium">
-              Kriti's exceptional product design ensured our website's success. Highly recommended!
+              Kriti&apos;s exceptional product design ensured our website&apos;s success. Highly recommended!
             </p>
             <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">450+</p>
             <p className="text-[var(--text-muted)] text-xs md:text-sm font-semibold uppercase tracking-wider mt-1">Client Served</p>
