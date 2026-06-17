@@ -1,2 +1,6 @@
 # Claude Code agent worktrees (should never be committed)
 .claude/worktrees/
+
+# Stray build / tooling artifacts
+my-app/out.css
+my-app/*-check.png
