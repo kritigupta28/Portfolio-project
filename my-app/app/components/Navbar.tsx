@@ -15,33 +15,43 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Top fade/blur strip — masks page content that scrolls into the gap
+          above and around the centered navbar. Hidden at the top so the hero
+          stays pristine; fades in once scrolled. */}
+      <div
+        aria-hidden
+        className={`fixed top-0 left-0 right-0 h-24 z-[90] pointer-events-none backdrop-blur-md bg-[var(--bg-primary)]/40 [mask-image:linear-gradient(to_bottom,black_55%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,black_55%,transparent)] transition-opacity duration-500 ${
+          scrolled ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
       <nav
         id="navbar"
         className={`fixed left-1/2 -translate-x-1/2 z-[100] transition-all duration-500 w-full px-6 max-w-5xl ${
           scrolled ? "top-4" : "top-8"
         }`}
       >
-        <div className="bg-[#111111]/90 border border-white/10 rounded-full px-8 py-4 flex items-center justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-md">
+        <div className="bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-full px-8 py-4 flex items-center justify-between shadow-[0_20px_50px_var(--accent-glow)] backdrop-blur-md">
           {/* Left Links */}
           <div className="hidden md:flex items-center justify-end gap-8 flex-1">
-            <a href="#home" className="text-white text-sm font-medium hover:text-[var(--accent-brand)] transition-colors">Home</a>
-            <a href="#about" className="text-gray-300 text-sm font-medium hover:text-white transition-colors">About</a>
-            <a href="#skills" className="text-gray-300 text-sm font-medium hover:text-white transition-colors">Skills</a>
+            <a href="#home" className="text-[var(--text-primary)] text-sm font-medium hover:text-[var(--accent-brand)] transition-colors">Home</a>
+            <a href="#about" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">About</a>
+            <a href="#skills" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Skills</a>
           </div>
 
           {/* Logo (Center) */}
           <div className="flex items-center gap-2 mx-8 shrink-0">
-            <div className="w-8 h-8 rounded-full bg-[var(--accent-brand)] flex items-center justify-center text-white font-bold text-sm shadow-[0_0_15px_var(--accent-brand)]">
+            <div className="w-8 h-8 rounded-full bg-[var(--accent-brand)] flex items-center justify-center text-[var(--bg-primary)] font-bold text-sm shadow-[0_0_15px_var(--accent-glow)]">
               K
             </div>
-            <span className="text-white font-bold text-base tracking-wide">Kriti</span>
+            <span className="text-[var(--text-primary)] font-bold text-base tracking-wide">Kriti</span>
           </div>
 
           {/* Right Links */}
           <div className="hidden md:flex items-center justify-start gap-8 flex-1">
-            <a href="#work" className="text-gray-300 text-sm font-medium hover:text-white transition-colors">Project</a>
-            <a href="#testimonials" className="text-gray-300 text-sm font-medium hover:text-white transition-colors">Testimonials</a>
-            <a href="#contact" className="text-gray-300 text-sm font-medium hover:text-white transition-colors">Contact Us</a>
+            <a href="#work" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Project</a>
+            <a href="#testimonials" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Testimonials</a>
+            <a href="#contact" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Contact Us</a>
             <ThemeToggle />
           </div>
 
@@ -52,9 +62,9 @@ export default function Navbar() {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
           </button>
         </div>
       </nav>
@@ -65,13 +75,13 @@ export default function Navbar() {
           mobileOpen ? "max-h-96 opacity-100 visible" : "max-h-0 opacity-0 invisible"
         }`}
       >
-        <div className="bg-[#111111]/95 backdrop-blur-xl border border-white/10 p-6 flex flex-col gap-5 items-center shadow-2xl">
-          <a href="#home" className="text-white text-base font-medium" onClick={() => setMobileOpen(false)}>Home</a>
-          <a href="#about" className="text-gray-300 text-base font-medium" onClick={() => setMobileOpen(false)}>About</a>
-          <a href="#skills" className="text-gray-300 text-base font-medium" onClick={() => setMobileOpen(false)}>Skills</a>
-          <a href="#work" className="text-gray-300 text-base font-medium" onClick={() => setMobileOpen(false)}>Project</a>
-          <a href="#testimonials" className="text-gray-300 text-base font-medium" onClick={() => setMobileOpen(false)}>Testimonials</a>
-          <a href="#contact" className="text-gray-300 text-base font-medium" onClick={() => setMobileOpen(false)}>Contact Us</a>
+        <div className="bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] p-6 flex flex-col gap-5 items-center shadow-2xl">
+          <a href="#home" className="text-[var(--text-primary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Home</a>
+          <a href="#about" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>About</a>
+          <a href="#skills" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Skills</a>
+          <a href="#work" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Project</a>
+          <a href="#testimonials" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Testimonials</a>
+          <a href="#contact" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Contact Us</a>
         </div>
       </div>
     </>

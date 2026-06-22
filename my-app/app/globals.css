@@ -1,7 +1,8 @@
 @import "tailwindcss";
+/* Scan all source under app/ (pages, layouts, and components/) for class names.
+   Path is relative to this CSS file. Must point at real dirs — a non-existent
+   @source can break the CSS build on case-sensitive/strict deploy hosts. */
 @source "../app";
-@source "../components";
-@source ".";
 /* ─── Design Tokens — Dark Mode (default) ─── */
 :root,
 [data-theme="dark"] {
@@ -672,7 +673,6 @@
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
-  mix-blend-mode: difference;
   will-change: transform;
 }
 
