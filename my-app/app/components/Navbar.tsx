@@ -36,7 +36,6 @@ export default function Navbar() {
           <div className="hidden md:flex items-center justify-end gap-8 flex-1">
             <a href="#home" className="text-[var(--text-primary)] text-sm font-medium hover:text-[var(--accent-brand)] transition-colors">Home</a>
             <a href="#about" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">About</a>
-            <a href="#skills" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Skills</a>
           </div>
 
           {/* Logo (Center) */}
@@ -55,17 +54,20 @@ export default function Navbar() {
             <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            id="mobile-menu-toggle"
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-          </button>
+          {/* Mobile Controls */}
+          <div className="md:hidden flex items-center gap-3">
+            <ThemeToggle />
+            <button
+              id="mobile-menu-toggle"
+              className="flex flex-col gap-1.5 p-2"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -78,7 +80,6 @@ export default function Navbar() {
         <div className="bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] p-6 flex flex-col gap-5 items-center shadow-2xl">
           <a href="#home" className="text-[var(--text-primary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Home</a>
           <a href="#about" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>About</a>
-          <a href="#skills" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Skills</a>
           <a href="#work" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Project</a>
           <a href="#testimonials" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Testimonials</a>
           <a href="#contact" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Contact Us</a>
