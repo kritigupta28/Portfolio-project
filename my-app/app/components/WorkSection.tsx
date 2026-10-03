@@ -1,52 +1,43 @@
 "use client";
 
-import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 
 const projects = [
   {
-    id: "fintrack",
-    title: "FinTrack Pro",
-    subtitle: "Fitness Tracking App",
-    category: "Mobile App · UI/UX Design",
+    id: "psd-cloud",
+    title: "PSD Cloud",
+    subtitle: "Precision & Steeling Design · ERP & HRM Software",
+    category: "Product Design",
     description:
-      "A comprehensive fitness tracking experience with real-time analytics, personalized workout plans, and an intuitive dashboard that keeps users motivated.",
-    image: "/project-fintrack.png",
-    tags: ["Figma", "Prototyping", "User Research"],
-    color: "from-purple-500/20 to-pink-500/20",
+      "Designed enterprise workflows across RFI Tracking, Document Control, Employee Management, Admin Portal, Permission & Access Management, Job Data, Client Management, and Client Portal.",
+    tags: ["RFI Tracking", "Document Control", "Access Management"],
   },
   {
-    id: "luxemart",
-    title: "LuxeMart",
-    subtitle: "Luxury E-commerce Platform",
-    category: "Web App · Product Design",
+    id: "teamday",
+    title: "TeamDay",
+    subtitle: "HRM & Project Management Platform",
+    category: "Research · End-to-End Design",
     description:
-      "A premium shopping experience with elegant product displays, seamless checkout, and a design system that elevates the brand's luxury positioning.",
-    image: "/project-luxemart.png",
-    tags: ["Design System", "Responsive", "A/B Testing"],
-    color: "from-amber-500/20 to-rose-500/20",
+      "Conducted product research and designed end-to-end experiences for daily task management, project backlog, stories, sprints, time management, and project tracking, including Microsoft Teams alerts.",
+    tags: ["Product Research", "Sprint Planning", "Time Management"],
   },
   {
-    id: "zenspace",
-    title: "ZenSpace",
-    subtitle: "Wellness & Meditation App",
-    category: "Mobile App · UX Strategy",
+    id: "nest-school-erp",
+    title: "Nest School ERP",
+    subtitle: "School Management / ERP Platform",
+    category: "Product Design",
     description:
-      "A calming wellness companion featuring guided meditations, breathing exercises, and sleep tracking — designed to promote mental wellbeing.",
-    image: "/project-zenspace.png",
-    tags: ["UX Research", "Motion Design", "Accessibility"],
-    color: "from-teal-500/20 to-emerald-500/20",
+      "Worked across Student, Teacher, Staff, Transportation, Attendance, Fees, Reports, and Exam/Assessment modules, with requirements aligned to UDISE / PSP compatibility.",
+    tags: ["Attendance", "Fees & Reports", "Exams"],
   },
   {
-    id: "wanderlust",
-    title: "Wanderlust",
-    subtitle: "Travel Booking Platform",
-    category: "Web App · End-to-End Design",
+    id: "lacs",
+    title: "LACS",
+    subtitle: "Locally Accessible Cloud System · Disaster Communication Platform",
+    category: "UI Design",
     description:
-      "An immersive travel booking platform with rich destination storytelling, dynamic itinerary builders, and a frictionless booking flow.",
-    image: "/project-wanderlust.png",
-    tags: ["Wireframing", "Visual Design", "Usability Testing"],
-    color: "from-orange-500/20 to-sky-500/20",
+      "Designed Feed, Messaging, and SOS/Emergency experiences for a portable local communication system built for situations where internet or mobile connectivity is unavailable or disrupted.",
+    tags: ["Feed", "Messaging", "SOS / Emergency"],
   },
 ];
 
@@ -73,8 +64,8 @@ export default function WorkSection() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-[var(--text-secondary)] max-w-xl mx-auto text-lg">
-            A curated collection of projects where I turned design challenges
-            into elegant, user-loved solutions.
+            Product work across ERP, HRM, education, and disaster-communication
+            platforms.
           </p>
         </ScrollReveal>
 
@@ -82,23 +73,19 @@ export default function WorkSection() {
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, i) => (
             <ScrollReveal key={project.id} delay={i * 150}>
-              <div className="project-card group cursor-pointer" id={`project-${project.id}`}>
-                {/* Image */}
-                <div className="relative h-64 sm:h-72 overflow-hidden">
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${project.color} z-10`}
-                  />
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover project-image"
-                  />
-                  {/* Hover overlay */}
-                  <div className="project-overlay z-20 flex items-end p-6">
-                    <span className="text-sm font-semibold tracking-wider uppercase text-[var(--accent)]">
-                      View Case Study →
-                    </span>
+              <div className="project-card group h-full" id={`project-${project.id}`}>
+                {/* Typographic cover */}
+                <div className="relative h-40 sm:h-48 overflow-hidden bg-gradient-to-br from-[var(--bg-card-hover)] to-[var(--bg-secondary)] border-b border-[var(--border-subtle)]">
+                  <span
+                    aria-hidden
+                    className="project-image absolute -bottom-6 -right-2 text-[9rem] sm:text-[11rem] font-black leading-none text-[var(--text-primary)] opacity-[0.06] select-none"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="relative h-full p-6 md:p-8 flex items-end">
+                    <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                      {project.title}
+                    </p>
                   </div>
                 </div>
 
@@ -107,10 +94,8 @@ export default function WorkSection() {
                   <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--accent)] mb-3">
                     {project.category}
                   </p>
-                  <h3 className="text-2xl font-bold mb-2 group-hover:text-[var(--accent)] transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-[var(--text-muted)] mb-1">
+                  <h3 className="sr-only">{project.title}</h3>
+                  <p className="text-sm text-[var(--text-muted)] mb-3">
                     {project.subtitle}
                   </p>
                   <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-5">

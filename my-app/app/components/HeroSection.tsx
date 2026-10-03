@@ -48,28 +48,22 @@ export default function HeroSection() {
         </h1>
 
         {/* Center Image and Stats Container */}
-        <div className="relative w-full flex justify-center -mt-10 sm:-mt-16 md:-mt-28 lg:-mt-32">
+        <div className="relative w-full flex justify-center mt-4 sm:-mt-16 md:-mt-28 lg:-mt-32">
 
 
           {/* Left Stat - Quote (no card, matches reference) */}
           <div className={`absolute left-0 md:left-4 bottom-24 lg:bottom-[345px] max-w-[230px] z-30 hidden lg:block transition-all duration-700 delay-300 ease-out ${loaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-            <div className="text-[var(--accent-brand)] text-6xl font-serif leading-none mb-1">&ldquo;</div>
             <p className="text-[var(--text-secondary)] text-sm md:text-base mb-6 leading-relaxed font-medium">
-              Kriti&apos;s exceptional product design ensured our website&apos;s success. Highly recommended!
+              Designing end-to-end digital products across enterprise, HRM, project management, and education software.
             </p>
-            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">450+</p>
-            <p className="text-[var(--text-muted)] text-xs md:text-sm font-semibold uppercase tracking-wider mt-1">Client Served</p>
+            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">4</p>
+            <p className="text-[var(--text-muted)] text-xs md:text-sm font-semibold uppercase tracking-wider mt-1">Featured Products</p>
           </div>
 
           {/* Right Stat - Experts (no card, matches reference) */}
           <div className={`absolute right-0 md:right-4 bottom-32 lg:bottom-[375px] z-30 hidden lg:block text-right transition-all duration-700 delay-400 ease-out ${loaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            <div className="flex justify-end gap-1.5 mb-3">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-[var(--accent-brand)] text-xl ">★</span>
-              ))}
-            </div>
-            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">7 Years</p>
-            <p className="text-[var(--text-muted)] text-xs md:text-sm font-semibold uppercase tracking-wider mt-2">Experts</p>
+            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">4+ Years</p>
+            <p className="text-[var(--text-muted)] text-xs md:text-sm font-semibold uppercase tracking-wider mt-2">In Product Design</p>
             <div className="w-28 h-px bg-white/30 mt-4 ml-auto" />
           </div>
 
@@ -87,8 +81,8 @@ export default function HeroSection() {
           {/* Download Resume Button */}
           <div className={`absolute bottom-16 md:bottom-24 z-40 flex justify-center transition-all duration-700 delay-500 ease-out ${loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
             <a
-              href="/resume.pdf"
-              download="Kriti_Gupta_Resume.pdf"
+              href="/KRITI_GUPTA_RESUME.pdf"
+              download="KRITI_GUPTA_RESUME.pdf"
               className="bg-[var(--accent-brand)] text-[var(--bg-primary)] px-10 md:px-14 py-4 md:py-5 rounded-full font-bold border border-[var(--border-accent)] hover:-translate-y-1 hover:opacity-90 transition-all flex items-center gap-3 text-base md:text-lg tracking-wide shadow-[0_8px_30px_rgba(0,0,0,0.15)]"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

@@ -35,29 +35,30 @@ export default function AboutSection() {
 
             <ScrollReveal delay={200}>
               <p className="text-[var(--text-secondary)] text-lg leading-relaxed mb-6">
-                With over 7 years of experience in UI/UX design, I&apos;ve had the
-                privilege of working with startups, enterprises, and agencies
-                alike — transforming ideas into meaningful digital products.
+                I&apos;m a Product Designer at Wisflux Techlabs in Jaipur,
+                designing end-to-end digital products across enterprise, HRM,
+                project management, and education software.
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={300}>
               <p className="text-[var(--text-secondary)] text-lg leading-relaxed mb-10">
-                My approach is rooted in understanding users deeply, then
-                crafting every pixel to serve both beauty and utility. I believe
-                great design doesn&apos;t just look good — it feels right.
+                I started as a UI/UX Designer and grew into owning product
+                discovery, research, requirements, interaction and visual
+                design, and developer handoff — and I prototype in code with
+                React and Next.js.
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={400}>
               <div className="flex flex-wrap gap-3">
                 {[
+                  "Product Design",
                   "User Research",
                   "Wireframing",
                   "Prototyping",
-                  "Visual Design",
                   "Design Systems",
-                  "Interaction Design",
+                  "Accessibility (WCAG)",
                 ].map((tag) => (
                   <span
                     key={tag}
@@ -76,22 +77,22 @@ export default function AboutSection() {
               <div className="relative pl-8 border-l border-[var(--border-subtle)]">
                 {[
                   {
-                    year: "2023 — Present",
-                    role: "Senior UI/UX Designer",
-                    company: "DesignStudio Pro",
-                    desc: "Leading the design of enterprise SaaS products, managing a team of 4 designers, and establishing the company's design system.",
-                  },
-                  {
-                    year: "2021 — 2023",
-                    role: "UI/UX Designer",
-                    company: "CreativeForge Agency",
-                    desc: "Designed mobile and web experiences for 20+ clients across fintech, health-tech, and e-commerce verticals.",
-                  },
-                  {
-                    year: "2019 — 2021",
+                    year: "Jan 2023 — Present",
                     role: "Product Designer",
-                    company: "Startupify",
-                    desc: "Collaborated with cross-functional teams to ship 3 products from 0→1, including user research and usability testing.",
+                    company: "Wisflux Techlabs",
+                    desc: "Progressed from UI/UX Designer to Product Designer, owning discovery, UX research, requirements, interaction and visual design, prototyping, and delivery for enterprise, HRM, and education products.",
+                  },
+                  {
+                    year: "Jun — Aug 2022",
+                    role: "Graphic Designer & UI/UX Designer",
+                    company: "Pie-Gamers, Jaipur",
+                    desc: "Designed and helped build the concept and mobile UI of a game project, plus social media posts and supporting visual content.",
+                  },
+                  {
+                    year: "Education · 2023",
+                    role: "Bachelor of Computer Applications (BCA)",
+                    company: "The ICFAI University, Jaipur",
+                    desc: "",
                   },
                 ].map((item, i) => (
                   <div key={i} className="relative mb-12 last:mb-0">
@@ -102,12 +103,14 @@ export default function AboutSection() {
                       {item.year}
                     </p>
                     <h3 className="text-xl font-bold mb-1">{item.role}</h3>
-                    <p className="text-sm text-[var(--text-muted)] mb-3">
+                    <p className={`text-sm text-[var(--text-muted)] ${item.desc ? "mb-3" : ""}`}>
                       {item.company}
                     </p>
-                    <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-                      {item.desc}
-                    </p>
+                    {item.desc && (
+                      <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                        {item.desc}
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>

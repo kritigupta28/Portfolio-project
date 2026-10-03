@@ -9,10 +9,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Kriti Gupta — Senior UI/UX Designer",
+  title: "Kriti Gupta — Product Designer",
   description:
-    "Portfolio of Kriti Gupta, a Senior UI/UX Designer crafting digital experiences that blend aesthetics with functionality. 7+ years of experience designing for top brands.",
+    "Portfolio of Kriti Gupta, a Product Designer in Jaipur designing end-to-end digital products across enterprise, HRM, education and operational software.",
   keywords: [
+    "Product Designer",
     "UI/UX Designer",
     "Product Design",
     "User Experience",
@@ -20,9 +21,9 @@ export const metadata: Metadata = {
     "Portfolio",
   ],
   openGraph: {
-    title: "Kriti Gupta — Senior UI/UX Designer",
+    title: "Kriti Gupta — Product Designer",
     description:
-      "Crafting digital experiences that blend aesthetics with functionality.",
+      "End-to-end product design across enterprise, HRM, education and operational software.",
     type: "website",
   },
 };

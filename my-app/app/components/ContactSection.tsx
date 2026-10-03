@@ -2,9 +2,18 @@
 
 import ScrollReveal from "./ScrollReveal";
 
+const EMAIL = "kritisambhariya@gmail.com";
+const PHONE = "7976562422";
+
+const links = [
+  { label: "LinkedIn", icon: "in", href: "https://www.linkedin.com/in/kriti-gupta-230930209/" },
+  { label: "Website", icon: "↗", href: "https://kritigupta.in" },
+  { label: "Email", icon: "@", href: `mailto:${EMAIL}` },
+];
+
 export default function ContactSection() {
   return (
-    <section id="contact" className="relative py-32 bg-[var(--bg-secondary)]">
+    <section id="contact" className="relative py-32 bg-[var(--bg-secondary)] overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px" style={{ background: "linear-gradient(90deg, transparent, var(--accent) 50%, transparent)", opacity: 0.3 }} />
 
       {/* Background glow */}
@@ -18,24 +27,34 @@ export default function ContactSection() {
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
-          <form className="space-y-6" onSubmit={(e) => e.preventDefault()} id="contact-form">
+          <form
+            className="space-y-6"
+            id="contact-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const f = new FormData(e.currentTarget);
+              const subject = String(f.get("subject") || "Portfolio inquiry");
+              const body = `${f.get("message") || ""}\n\n— ${f.get("name") || ""} (${f.get("email") || ""})`;
+              window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            }}
+          >
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2 text-[var(--text-secondary)]">Your Name</label>
-                <input type="text" id="name" className="form-input" placeholder="John Doe" />
+                <input type="text" id="name" name="name" required className="form-input" placeholder="John Doe" />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2 text-[var(--text-secondary)]">Email Address</label>
-                <input type="email" id="email" className="form-input" placeholder="john@example.com" />
+                <input type="email" id="email" name="email" required className="form-input" placeholder="john@example.com" />
               </div>
             </div>
             <div>
               <label htmlFor="subject" className="block text-sm font-medium mb-2 text-[var(--text-secondary)]">Subject</label>
-              <input type="text" id="subject" className="form-input" placeholder="Project inquiry" />
+              <input type="text" id="subject" name="subject" className="form-input" placeholder="Project inquiry" />
             </div>
             <div>
               <label htmlFor="message" className="block text-sm font-medium mb-2 text-[var(--text-secondary)]">Message</label>
-              <textarea id="message" rows={5} className="form-input resize-none" placeholder="Tell me about your project..." />
+              <textarea id="message" name="message" required rows={5} className="form-input resize-none" placeholder="Tell me about your project..." />
             </div>
             <div className="text-center pt-4">
               <button type="submit" className="btn-primary text-base px-10 py-4" id="contact-submit">
@@ -48,15 +67,13 @@ export default function ContactSection() {
 
         {/* Social links */}
         <ScrollReveal delay={400} className="mt-16 text-center">
-          <p className="text-sm text-[var(--text-muted)] mb-6 tracking-wider uppercase">Or find me on</p>
+          <p className="text-[var(--text-secondary)] text-base mb-1">
+            <a href={`mailto:${EMAIL}`} className="hover:text-[var(--accent)] transition-colors break-all">{EMAIL}</a>
+          </p>
+          <p className="text-[var(--text-muted)] text-sm mb-10">{PHONE} · Jaipur, India</p>
           <div className="flex justify-center gap-6">
-            {[
-              { label: "LinkedIn", icon: "in", href: "#" },
-              { label: "Dribbble", icon: "Dr", href: "#" },
-              { label: "Behance", icon: "Be", href: "#" },
-              { label: "Twitter", icon: "𝕏", href: "#" },
-            ].map((s) => (
-              <a key={s.label} href={s.href} id={`social-${s.label.toLowerCase()}`} className="w-12 h-12 rounded-full border border-[var(--border-subtle)] flex items-center justify-center text-sm font-bold text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] hover:bg-[var(--accent-glow)] transition-all duration-300" aria-label={s.label} title={s.label}>
+            {links.map((s) => (
+              <a key={s.label} href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" id={`social-${s.label.toLowerCase()}`} className="w-12 h-12 rounded-full border border-[var(--border-subtle)] flex items-center justify-center text-sm font-bold text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] hover:bg-[var(--accent-glow)] transition-all duration-300" aria-label={s.label} title={s.label}>
                 {s.icon}
               </a>
             ))}

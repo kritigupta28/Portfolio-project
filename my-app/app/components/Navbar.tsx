@@ -33,13 +33,13 @@ export default function Navbar() {
       >
         <div className="bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-full px-8 py-4 flex items-center justify-between shadow-[0_20px_50px_var(--accent-glow)] backdrop-blur-md">
           {/* Left Links */}
-          <div className="hidden md:flex items-center justify-end gap-8 flex-1">
-            <a href="#home" className="text-[var(--text-primary)] text-sm font-medium hover:text-[var(--accent-brand)] transition-colors">Home</a>
-            <a href="#about" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">About</a>
+          <div className="hidden md:flex items-center justify-end gap-5 lg:gap-8 flex-1">
+            <a href="#home" className="text-[var(--text-primary)] text-sm font-medium whitespace-nowrap hover:text-[var(--accent-brand)] transition-colors">Home</a>
+            <a href="#about" className="text-[var(--text-secondary)] text-sm font-medium whitespace-nowrap hover:text-[var(--text-primary)] transition-colors">About</a>
           </div>
 
           {/* Logo (Center) */}
-          <div className="flex items-center gap-2 mx-8 shrink-0">
+          <div className="flex items-center gap-2 mx-5 lg:mx-8 shrink-0">
             <div className="w-8 h-8 rounded-full bg-[var(--accent-brand)] flex items-center justify-center text-[var(--bg-primary)] font-bold text-sm shadow-[0_0_15px_var(--accent-glow)]">
               K
             </div>
@@ -47,10 +47,9 @@ export default function Navbar() {
           </div>
 
           {/* Right Links */}
-          <div className="hidden md:flex items-center justify-start gap-8 flex-1">
-            <a href="#work" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Project</a>
-            <a href="#testimonials" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Testimonials</a>
-            <a href="#contact" className="text-[var(--text-secondary)] text-sm font-medium hover:text-[var(--text-primary)] transition-colors">Contact Us</a>
+          <div className="hidden md:flex items-center justify-start gap-5 lg:gap-8 flex-1">
+            <a href="#work" className="text-[var(--text-secondary)] text-sm font-medium whitespace-nowrap hover:text-[var(--text-primary)] transition-colors">Project</a>
+            <a href="#contact" className="text-[var(--text-secondary)] text-sm font-medium whitespace-nowrap hover:text-[var(--text-primary)] transition-colors">Contact Us</a>
             <ThemeToggle />
           </div>
 
@@ -81,7 +80,6 @@ export default function Navbar() {
           <a href="#home" className="text-[var(--text-primary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Home</a>
           <a href="#about" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>About</a>
           <a href="#work" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Project</a>
-          <a href="#testimonials" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Testimonials</a>
           <a href="#contact" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Contact Us</a>
         </div>
       </div>

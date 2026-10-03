@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="marquee-container mb-10">
           <div className="marquee-content">
             {Array(4).fill(null).map((_, i) => (
-              <span key={i}>UI/UX Design ✦ Product Strategy ✦ Figma ✦ Design Systems ✦ User Research ✦</span>
+              <span key={i}>Product Design ✦ UX Research ✦ Design Systems ✦ Prototyping ✦ Figma ✦</span>
             ))}
           </div>
         </div>
