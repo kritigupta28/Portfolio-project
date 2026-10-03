@@ -49,6 +49,7 @@ export default function Navbar() {
           {/* Right Links */}
           <div className="hidden md:flex items-center justify-start gap-5 lg:gap-8 flex-1">
             <a href="#work" className="text-[var(--text-secondary)] text-sm font-medium whitespace-nowrap hover:text-[var(--text-primary)] transition-colors">Project</a>
+            <a href="#skills" className="text-[var(--text-secondary)] text-sm font-medium whitespace-nowrap hover:text-[var(--text-primary)] transition-colors">Skills</a>
             <a href="#contact" className="text-[var(--text-secondary)] text-sm font-medium whitespace-nowrap hover:text-[var(--text-primary)] transition-colors">Contact Us</a>
             <ThemeToggle />
           </div>
@@ -80,6 +81,7 @@ export default function Navbar() {
           <a href="#home" className="text-[var(--text-primary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Home</a>
           <a href="#about" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>About</a>
           <a href="#work" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Project</a>
+          <a href="#skills" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Skills</a>
           <a href="#contact" className="text-[var(--text-secondary)] text-base font-medium" onClick={() => setMobileOpen(false)}>Contact Us</a>
         </div>
       </div>
