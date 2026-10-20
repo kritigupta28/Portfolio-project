@@ -1,8 +1,34 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import ScrollReveal from "./ScrollReveal";
+import w from "./WorkSection.module.css";
 
-const projects = [
+type Project = {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  description: string;
+  tags: string[];
+  caseStudy?: { href: string; screens: string[] };
+};
+
+const projects: Project[] = [
+  {
+    id: "fizvizz",
+    title: "Fizvizz",
+    subtitle: "Digital Business Card & Networking App · Android & iOS",
+    category: "Mobile App Design",
+    description:
+      "Designed native mobile experiences for digital business cards: card creation, separate cards for different circles, and sharing by QR code, link, SMS and email without exposing personal contact details — plus groups, events, introductions, privacy controls and AI-powered card scanning.",
+    tags: ["Digital Cards", "QR Sharing", "Events & Groups"],
+    caseStudy: {
+      href: "/work/fizvizz",
+      screens: ["qr-share-card.png", "home-pending.png", "events-attend.png"],
+    },
+  },
   {
     id: "psd-cloud",
     title: "PSD Cloud",
@@ -41,6 +67,116 @@ const projects = [
   },
 ];
 
+// Fanned positions for the case-study screens peeking out of the cover.
+const peek = [
+  "right-[30%] sm:right-[33%] -rotate-[8deg] w-[24%] sm:w-[17%] md:w-[13%]",
+  "right-[15%] sm:right-[18%] w-[27%] sm:w-[19%] md:w-[14.5%] z-10",
+  "right-0 sm:right-[3%] rotate-[8deg] w-[24%] sm:w-[17%] md:w-[13%]",
+];
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const cs = project.caseStudy;
+
+  const body = (
+    <>
+      {/* Cover */}
+      <div
+        className={`relative overflow-hidden border-b border-[var(--border-subtle)] ${
+          cs ? `${w.fzCover} h-56 sm:h-64` : "bg-gradient-to-br from-[var(--bg-card-hover)] to-[var(--bg-secondary)] h-40 sm:h-48"
+        }`}
+      >
+        <span
+          aria-hidden
+          className={`project-image absolute -bottom-6 text-[9rem] sm:text-[11rem] font-black leading-none text-[var(--text-primary)] opacity-[0.06] select-none ${
+            cs ? `${w.fzNum} left-[38%] hidden sm:block` : "-right-2"
+          }`}
+        >
+          {String(index + 1).padStart(2, "0")}
+        </span>
+
+        {cs && (
+          <>
+            <svg viewBox="0 0 40 40" aria-hidden className={`${w.doodle} w-7 left-[7%] top-[13%]`}>
+              <path fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" d="M20 4l4.6 10.2 11 1.2-8.3 7.4 2.4 10.9L20 28.1l-9.7 5.6 2.4-10.9-8.3-7.4 11-1.2z" />
+            </svg>
+            <svg viewBox="0 0 62 26" aria-hidden className={`${w.doodle} ${w.doodleSlow} w-14 left-[24%] top-[20%] hidden sm:block`}>
+              <path fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" d="M3 14c6-10 10-10 14 0s8 10 14 0 10-10 14 0 8 10 14 0" />
+            </svg>
+            <svg viewBox="0 0 32 32" aria-hidden className={`${w.doodle} w-5 sm:w-6 left-[44%] sm:left-[36%] top-[10%] sm:top-auto sm:bottom-[16%]`}>
+              <path fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" d="M16 2c1 8 4 11 12 14-8 3-11 6-12 14-1-8-4-11-12-14 8-3 11-6 12-14z" />
+            </svg>
+            <svg viewBox="0 0 48 46" aria-hidden className={`${w.doodle} ${w.doodleSlow} w-9 right-[46%] top-[12%] hidden md:block`}>
+              <path fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M6 8h34a4 4 0 014 4v18a4 4 0 01-4 4H22l-9 8v-8H6a4 4 0 01-4-4V12a4 4 0 014-4zM12 18h22M12 25h14" />
+            </svg>
+          </>
+        )}
+
+        {cs?.screens.map((src, k) => (
+          <Image
+            key={src}
+            src={`/case-studies/fizvizz/${src}`}
+            alt=""
+            width={474}
+            height={914}
+            sizes="(max-width: 640px) 30vw, 180px"
+            className={`absolute top-[18%] sm:top-[14%] h-auto drop-shadow-xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-3 ${peek[k]}`}
+            style={{ transitionDelay: `${k * 60}ms` }}
+          />
+        ))}
+
+        <div className="relative h-full p-6 md:p-8 flex flex-col justify-end items-start gap-3">
+          {cs && (
+            <span className="px-3 py-1 rounded-full text-[10px] font-semibold tracking-[0.2em] uppercase bg-[var(--text-primary)] text-[var(--bg-primary)]">
+              Case study
+            </span>
+          )}
+          <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">{project.title}</p>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className={`p-6 md:p-8 ${cs ? "md:grid md:grid-cols-[1.4fr_1fr] md:gap-10 md:items-end" : ""}`}>
+        <div>
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--accent)] mb-3">
+            {project.category}
+          </p>
+          <h3 className="sr-only">{project.title}</h3>
+          <p className="text-sm text-[var(--text-muted)] mb-3">{project.subtitle}</p>
+          <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-5">{project.description}</p>
+        </div>
+        <div>
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase bg-[var(--bg-secondary)] text-[var(--text-muted)] border border-[var(--border-subtle)]"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          {cs && (
+            <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">
+              View case study
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </span>
+          )}
+        </div>
+      </div>
+    </>
+  );
+
+  return cs ? (
+    <Link href={cs.href} id={`project-${project.id}`} className="project-card group block h-full">
+      {body}
+    </Link>
+  ) : (
+    <div id={`project-${project.id}`} className="project-card group h-full">
+      {body}
+    </div>
+  );
+}
+
 export default function WorkSection() {
   return (
     <section id="work" className="relative py-32">
@@ -48,8 +184,7 @@ export default function WorkSection() {
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px"
         style={{
-          background:
-            "linear-gradient(90deg, transparent, var(--accent) 50%, transparent)",
+          background: "linear-gradient(90deg, transparent, var(--accent) 50%, transparent)",
           opacity: 0.3,
         }}
       />
@@ -64,55 +199,19 @@ export default function WorkSection() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-[var(--text-secondary)] max-w-xl mx-auto text-lg">
-            Product work across ERP, HRM, education, and disaster-communication
-            platforms.
+            Product work across networking, ERP, HRM, education, and disaster-communication platforms.
           </p>
         </ScrollReveal>
 
-        {/* Projects Grid */}
+        {/* Projects Grid — case-study cards span both columns */}
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, i) => (
-            <ScrollReveal key={project.id} delay={i * 150}>
-              <div className="project-card group h-full" id={`project-${project.id}`}>
-                {/* Typographic cover */}
-                <div className="relative h-40 sm:h-48 overflow-hidden bg-gradient-to-br from-[var(--bg-card-hover)] to-[var(--bg-secondary)] border-b border-[var(--border-subtle)]">
-                  <span
-                    aria-hidden
-                    className="project-image absolute -bottom-6 -right-2 text-[9rem] sm:text-[11rem] font-black leading-none text-[var(--text-primary)] opacity-[0.06] select-none"
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className="relative h-full p-6 md:p-8 flex items-end">
-                    <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                      {project.title}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6 md:p-8">
-                  <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--accent)] mb-3">
-                    {project.category}
-                  </p>
-                  <h3 className="sr-only">{project.title}</h3>
-                  <p className="text-sm text-[var(--text-muted)] mb-3">
-                    {project.subtitle}
-                  </p>
-                  <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-5">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase bg-[var(--bg-secondary)] text-[var(--text-muted)] border border-[var(--border-subtle)]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            <ScrollReveal
+              key={project.id}
+              delay={(project.caseStudy ? 0 : i % 2) * 150}
+              className={project.caseStudy ? "md:col-span-2" : ""}
+            >
+              <ProjectCard project={project} index={i} />
             </ScrollReveal>
           ))}
         </div>
