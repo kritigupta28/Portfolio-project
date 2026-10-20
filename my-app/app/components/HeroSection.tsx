@@ -56,13 +56,13 @@ export default function HeroSection() {
             <p className="text-[var(--text-secondary)] text-sm md:text-base mb-6 leading-relaxed font-medium">
               Designing end-to-end digital products across enterprise, HRM, project management, and education software.
             </p>
-            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">4</p>
+            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">5</p>
             <p className="text-[var(--text-muted)] text-xs md:text-sm font-semibold uppercase tracking-wider mt-1">Featured Products</p>
           </div>
 
           {/* Right Stat - Experts (no card, matches reference) */}
           <div className={`absolute right-0 md:right-4 bottom-32 lg:bottom-[375px] z-30 hidden lg:block text-right transition-all duration-700 delay-400 ease-out ${loaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">4+ Years</p>
+            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">3+ Years</p>
             <p className="text-[var(--text-muted)] text-xs md:text-sm font-semibold uppercase tracking-wider mt-2">In Product Design</p>
             <div className="w-28 h-px bg-white/30 mt-4 ml-auto" />
           </div>
