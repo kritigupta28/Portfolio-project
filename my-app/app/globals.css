@@ -195,6 +195,11 @@
   opacity: 0.15; /* reduced opacity */
 }
 
+/* Phones/tablets show the motifs larger but in a smaller frame, so lift them a touch */
+.mask-mehndi-loaded.mehndi-mobile {
+  opacity: 0.24;
+}
+
 /* ─── Animation Utilities ─── */
 .animate-float {
   animation: float 6s ease-in-out infinite;

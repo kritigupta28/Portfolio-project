@@ -51,6 +51,24 @@ export default function HeroSection() {
         />
       </div>
 
+      {/* Floral corners for phones & tablets: the landscape asset's two motifs, cropped and pinned to the hero's corners */}
+      <div className={`absolute inset-0 z-0 lg:hidden pointer-events-none mask-mehndi blend-mehndi mehndi-mobile ${loaded ? 'mask-mehndi-loaded' : ''}`} aria-hidden>
+        {/* top-right motif: right 45% × top 80% of the artwork */}
+        <div className="absolute top-0 right-0 w-[82vw] max-w-[540px] aspect-[750/754] overflow-hidden">
+          <div className="absolute top-0 right-0 w-[222%] aspect-[1668/943]">
+            <Image src="/mehndi_asset.png" alt="" fill sizes="180vw" className="object-cover show-in-light" />
+            <Image src="/mehndi_asset_dark.png" alt="" fill sizes="180vw" className="object-cover show-in-dark" />
+          </div>
+        </div>
+        {/* bottom-left motif: left 72% × bottom 80% of the artwork */}
+        <div className="absolute bottom-0 left-0 w-[104vw] max-w-[760px] aspect-[1201/754] overflow-hidden">
+          <div className="absolute bottom-0 left-0 w-[139%] aspect-[1668/943]">
+            <Image src="/mehndi_asset.png" alt="" fill sizes="145vw" className="object-cover show-in-light" />
+            <Image src="/mehndi_asset_dark.png" alt="" fill sizes="145vw" className="object-cover show-in-dark" />
+          </div>
+        </div>
+      </div>
+
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 flex flex-col items-center mt-12 md:mt-0">
 
         {/* Hello Badge */}
