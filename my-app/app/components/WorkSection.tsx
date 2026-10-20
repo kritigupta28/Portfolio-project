@@ -44,16 +44,6 @@ const projects: Project[] = [
     },
   },
   {
-    id: "psd-cloud",
-    title: "PSD Cloud",
-    subtitle: "Precision & Steeling Design · ERP & HRM Software",
-    category: "Product Design",
-    description:
-      "Designed enterprise workflows across RFI Tracking, Document Control, Employee Management, Admin Portal, Permission & Access Management, Job Data, Client Management, and Client Portal.",
-    tags: ["RFI Tracking", "Document Control", "Access Management"],
-    caseStudy: { href: "/work/psd-cloud", theme: "psd", layout: "soon", screens: [] },
-  },
-  {
     id: "teamday",
     title: "TeamDay",
     subtitle: "HRM & Project Management Platform",
@@ -107,6 +97,16 @@ const projects: Project[] = [
         { src: "/case-studies/lacs/alert-detail-video.png", w: 376, h: 815 },
       ],
     },
+  },
+  {
+    id: "psd-cloud",
+    title: "PSD Cloud",
+    subtitle: "Precision & Steeling Design · ERP & HRM Software",
+    category: "Product Design",
+    description:
+      "Designed enterprise workflows across RFI Tracking, Document Control, Employee Management, Admin Portal, Permission & Access Management, Job Data, Client Management, and Client Portal.",
+    tags: ["RFI Tracking", "Document Control", "Access Management"],
+    caseStudy: { href: "/work/psd-cloud", theme: "psd", layout: "soon", screens: [] },
   },
 ];
 
