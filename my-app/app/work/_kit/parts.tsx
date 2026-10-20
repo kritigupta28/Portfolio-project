@@ -271,3 +271,27 @@ export function Connector({ d, viewBox, className = "" }: { d: string; viewBox: 
     </svg>
   );
 }
+
+/** A main browser window with an optional smaller one overlapping its corner. */
+export function WindowStack({
+  main,
+  sub,
+  url,
+  flip = false,
+}: {
+  main: Shot;
+  sub?: Shot;
+  url?: string;
+  flip?: boolean;
+}) {
+  return (
+    <div className={`${s.stack} ${sub ? s.stackHasSub : ""} ${flip ? s.stackFlip : ""}`}>
+      <BrowserFrame shot={main} url={url} className={s.stackMain} />
+      {sub && (
+        <div className={s.stackSub}>
+          <BrowserFrame shot={sub} sizes="(max-width: 1024px) 60vw, 420px" />
+        </div>
+      )}
+    </div>
+  );
+}

@@ -71,6 +71,27 @@
   --b3: #0d373d;
 }
 
+.coverTeamday {
+  --line: rgba(63, 158, 112, 0.42);
+  --num: #3f9e70;
+  --edge: rgba(63, 158, 112, 0.16);
+  --g1: rgba(80, 178, 131, 0.28);
+  --g2: rgba(29, 59, 48, 0.12);
+  --b1: #e8f6ef;
+  --b2: #f6fbf8;
+  --b3: #dcf0e6;
+}
+:global([data-theme="dark"]) .coverTeamday {
+  --line: rgba(143, 220, 181, 0.38);
+  --num: #8fdcb5;
+  --edge: rgba(143, 220, 181, 0.14);
+  --g1: rgba(80, 178, 131, 0.22);
+  --g2: rgba(63, 158, 112, 0.45);
+  --b1: #0c2119;
+  --b2: #10291f;
+  --b3: #143326;
+}
+
 /* Dot grid that fades in towards the screens */
 .cover::before {
   content: "";

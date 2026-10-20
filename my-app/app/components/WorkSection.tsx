@@ -14,14 +14,14 @@ type Project = {
   tags: string[];
   caseStudy?: {
     href: string;
-    theme: "fizvizz" | "lacs" | "nest";
+    theme: "fizvizz" | "lacs" | "nest" | "teamday";
     /** phones: fanned phone screens; desktop: overlapping browser windows */
     layout: "phones" | "desktop";
     screens: { src: string; w: number; h: number }[];
   };
 };
 
-const coverTheme = { fizvizz: w.coverFizvizz, lacs: w.coverLacs, nest: w.coverNest };
+const coverTheme = { fizvizz: w.coverFizvizz, lacs: w.coverLacs, nest: w.coverNest, teamday: w.coverTeamday };
 
 const projects: Project[] = [
   {
@@ -60,6 +60,15 @@ const projects: Project[] = [
     description:
       "Conducted product research and designed end-to-end experiences for daily task management, project backlog, stories, sprints, time management, and project tracking, including Microsoft Teams alerts.",
     tags: ["Product Research", "Sprint Planning", "Time Management"],
+    caseStudy: {
+      href: "/work/teamday",
+      theme: "teamday",
+      layout: "desktop",
+      screens: [
+        { src: "/case-studies/teamday/app/backlog.png", w: 2880, h: 1800 },
+        { src: "/case-studies/teamday/app/today-plan.png", w: 2880, h: 1800 },
+      ],
+    },
   },
   {
     id: "nest-school-erp",
@@ -260,12 +269,12 @@ export default function WorkSection() {
         </ScrollReveal>
 
         {/* Projects Grid — case-study cards span both columns */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid gap-8">
           {projects.map((project, i) => (
             <ScrollReveal
               key={project.id}
               delay={(project.caseStudy ? 0 : i % 2) * 150}
-              className={project.caseStudy ? "md:col-span-2" : ""}
+              
             >
               <ProjectCard project={project} index={i} />
             </ScrollReveal>

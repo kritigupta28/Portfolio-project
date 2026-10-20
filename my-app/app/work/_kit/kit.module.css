@@ -63,6 +63,27 @@
   --cs-card: var(--bg-card);
 }
 
+/* TeamDay: the product's fresh green with a calm slate ink */
+.themeTeamday {
+  --cs: #3f9e70;
+  --cs-hover: #348a61;
+  --cs-deep: #1d3b30;
+  --cs-alt: #50b283;
+  --cs-alt-ink: #ffffff;
+  --cs-ink: #2f8a5e;
+  --cs-soft: #e6f5ee;
+  --cs-line: rgba(63, 158, 112, 0.45);
+  --cs-card: #ffffff;
+}
+:global([data-theme="dark"]) .themeTeamday {
+  --cs: #45a878;
+  --cs-hover: #52b585;
+  --cs-ink: #8fdcb5;
+  --cs-soft: rgba(80, 178, 131, 0.14);
+  --cs-line: rgba(143, 220, 181, 0.4);
+  --cs-card: var(--bg-card);
+}
+
 .accent {
   color: var(--cs-ink);
 }
@@ -774,5 +795,48 @@
   }
   .browserUrl {
     font-size: 0.58rem;
+  }
+}
+
+/* ─── Overlapping desktop windows ─── */
+.stack {
+  position: relative;
+}
+.stackHasSub {
+  padding: 0 8% 14% 0;
+}
+.stackFlip.stackHasSub {
+  padding: 0 0 14% 8%;
+}
+.stackMain,
+.stackSub {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stackSub {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 52%;
+  z-index: 2;
+  transform: rotate(1.5deg);
+}
+.stackFlip .stackSub {
+  right: auto;
+  left: 0;
+  transform: rotate(-1.5deg);
+}
+.stack:hover .stackSub {
+  transform: rotate(0deg) translate(3%, 2%);
+}
+.stackFlip:hover .stackSub {
+  transform: rotate(0deg) translate(-3%, 2%);
+}
+.stack:hover .stackMain {
+  transform: translateY(-1.5%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .stackMain,
+  .stackSub {
+    transition: none;
   }
 }
