@@ -1,42 +1,92 @@
-/* Fizvizz case-study cover: matches the case study's brand look (mist in light,
-   deep navy in dark), with the same indigo/cyan glows and doodles. */
-.fzCover {
-  --fz-line: rgba(84, 98, 184, 0.45);
+/* Case-study card covers. Each project gets its brand look (light + dark),
+   matching the palette of its case-study page. */
+.cover {
   background:
-    radial-gradient(circle at 88% -10%, rgba(34, 186, 226, 0.22), transparent 45%),
-    radial-gradient(circle at 62% 125%, rgba(84, 98, 184, 0.3), transparent 55%),
-    linear-gradient(135deg, #edeffb 0%, #f7f8fe 55%, #e5e8f9 100%);
-  border-bottom-color: rgba(84, 98, 184, 0.18) !important;
+    radial-gradient(circle at 88% -10%, var(--g1), transparent 45%),
+    radial-gradient(circle at 60% 125%, var(--g2), transparent 55%),
+    linear-gradient(135deg, var(--b1) 0%, var(--b2) 55%, var(--b3) 100%);
+  border-bottom-color: var(--edge) !important;
 }
-:global([data-theme="dark"]) .fzCover {
-  --fz-line: rgba(166, 176, 245, 0.4);
-  background:
-    radial-gradient(circle at 88% -10%, rgba(34, 186, 226, 0.24), transparent 45%),
-    radial-gradient(circle at 58% 125%, rgba(84, 98, 184, 0.5), transparent 55%),
-    linear-gradient(135deg, #121a38 0%, #1f2863 100%);
-  border-bottom-color: rgba(166, 176, 245, 0.16) !important;
+
+.coverFizvizz {
+  --line: rgba(84, 98, 184, 0.45);
+  --num: #5462b8;
+  --edge: rgba(84, 98, 184, 0.18);
+  --g1: rgba(34, 186, 226, 0.22);
+  --g2: rgba(84, 98, 184, 0.3);
+  --b1: #edeffb;
+  --b2: #f7f8fe;
+  --b3: #e5e8f9;
+}
+:global([data-theme="dark"]) .coverFizvizz {
+  --line: rgba(166, 176, 245, 0.4);
+  --num: #a6b0f5;
+  --edge: rgba(166, 176, 245, 0.16);
+  --g1: rgba(34, 186, 226, 0.24);
+  --g2: rgba(84, 98, 184, 0.5);
+  --b1: #121a38;
+  --b2: #19214b;
+  --b3: #1f2863;
+}
+
+.coverLacs {
+  --line: rgba(47, 127, 203, 0.45);
+  --num: #2f7fcb;
+  --edge: rgba(47, 127, 203, 0.18);
+  --g1: rgba(236, 60, 60, 0.16);
+  --g2: rgba(47, 127, 203, 0.3);
+  --b1: #e8f2fc;
+  --b2: #f6fafe;
+  --b3: #deecfa;
+}
+:global([data-theme="dark"]) .coverLacs {
+  --line: rgba(140, 196, 245, 0.4);
+  --num: #8cc4f5;
+  --edge: rgba(140, 196, 245, 0.16);
+  --g1: rgba(236, 60, 60, 0.2);
+  --g2: rgba(47, 127, 203, 0.5);
+  --b1: #0b2238;
+  --b2: #0d2b48;
+  --b3: #0f3557;
+}
+
+.coverNest {
+  --line: rgba(13, 55, 61, 0.35);
+  --num: #0d373d;
+  --edge: rgba(13, 55, 61, 0.14);
+  --g1: rgba(143, 209, 106, 0.38);
+  --g2: rgba(13, 55, 61, 0.18);
+  --b1: #eef9e6;
+  --b2: #f7fbf4;
+  --b3: #e2f3d6;
+}
+:global([data-theme="dark"]) .coverNest {
+  --line: rgba(182, 238, 148, 0.36);
+  --num: #b6ee94;
+  --edge: rgba(182, 238, 148, 0.14);
+  --g1: rgba(143, 209, 106, 0.22);
+  --g2: rgba(31, 111, 106, 0.55);
+  --b1: #072226;
+  --b2: #0a2c31;
+  --b3: #0d373d;
 }
 
 /* Dot grid that fades in towards the screens */
-.fzCover::before {
+.cover::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(var(--fz-line) 1px, transparent 1.2px);
+  background-image: radial-gradient(var(--line) 1px, transparent 1.2px);
   background-size: 18px 18px;
   opacity: 0.55;
   -webkit-mask-image: linear-gradient(100deg, transparent 15%, #000 70%);
   mask-image: linear-gradient(100deg, transparent 15%, #000 70%);
 }
 
-.fzNum {
-  color: #5462b8 !important;
+.num {
+  color: var(--num) !important;
   opacity: 0.09 !important;
-}
-:global([data-theme="dark"]) .fzNum {
-  color: #a6b0f5 !important;
-  opacity: 0.08 !important;
 }
 
 .doodle {
@@ -44,12 +94,50 @@
   pointer-events: none;
   height: auto;
   overflow: visible;
-  color: var(--fz-line);
+  color: var(--line);
   animation: bob 6s ease-in-out infinite;
 }
 .doodleSlow {
   animation-duration: 9s;
   animation-direction: reverse;
+}
+
+/* Desktop screenshots shown as small browser windows */
+.win {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow:
+    0 24px 48px -16px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    translate 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.winBar {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  height: 0.6rem;
+  padding: 0 0.35rem;
+  background: #eef1f2;
+}
+.winBar i {
+  width: 4px;
+  height: 4px;
+  border-radius: 99px;
+  background: #c9d0d3;
+}
+@media (min-width: 640px) {
+  .winBar {
+    height: 0.85rem;
+    gap: 4px;
+  }
+  .winBar i {
+    width: 5px;
+    height: 5px;
+  }
 }
 
 @keyframes bob {

@@ -1,0 +1,299 @@
+/* Nest-specific pieces. Colours come from the shared kit's .themeNest variables. */
+
+/* ─── Hero composition: a dashboard window with a phone and badges ─── */
+.heroVisual {
+  position: relative;
+  padding: 0 0 12% 6%;
+}
+.heroWin {
+  transform: perspective(1800px) rotateY(-7deg) rotateX(2deg);
+  transform-origin: left center;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.heroVisual:hover .heroWin {
+  transform: perspective(1800px) rotateY(-3deg) rotateX(1deg);
+}
+.heroPhone {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 24%;
+  z-index: 3;
+  transform: rotate(-4deg);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.heroVisual:hover .heroPhone {
+  transform: rotate(-1deg) translateY(-4%);
+}
+
+/* ─── Stacked windows ─── */
+.stack {
+  position: relative;
+}
+.stackHasSub {
+  padding: 0 8% 14% 0;
+}
+.stackFlip.stackHasSub {
+  padding: 0 0 14% 8%;
+}
+.stackMain {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stackSub {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 52%;
+  z-index: 2;
+  transform: rotate(1.5deg);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stackFlip .stackSub {
+  right: auto;
+  left: 0;
+  transform: rotate(-1.5deg);
+}
+.stack:hover .stackSub {
+  transform: rotate(0deg) translate(3%, 2%);
+}
+.stackFlip:hover .stackSub {
+  transform: rotate(0deg) translate(-3%, 2%);
+}
+.stack:hover .stackMain {
+  transform: translateY(-1.5%);
+}
+
+/* ─── Phone bezel for the mobile capture ─── */
+.phone {
+  overflow: hidden;
+  border-radius: 1.6rem;
+  border: 6px solid #10191b;
+  background: #10191b;
+  box-shadow:
+    0 30px 60px -18px color-mix(in srgb, var(--cs-deep) 45%, transparent),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+@media (max-width: 640px) {
+  .phone {
+    border-width: 4px;
+    border-radius: 1.1rem;
+  }
+}
+
+/* ─── A tall page that scrolls inside its window ─── */
+.scrollWin {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  background: var(--cs-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 30px 60px -20px color-mix(in srgb, var(--cs-deep) 35%, transparent);
+  outline: none;
+}
+.scrollWin:focus-visible {
+  box-shadow:
+    0 0 0 3px var(--cs-line),
+    0 30px 60px -20px color-mix(in srgb, var(--cs-deep) 35%, transparent);
+}
+.scrollBar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 2rem;
+  padding: 0 0.85rem;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--cs-soft) 70%, var(--bg-secondary));
+  border-bottom: 1px solid var(--border-subtle);
+}
+.scrollBar i {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-muted) 55%, transparent);
+}
+.scrollBar span {
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 2rem;
+}
+.scrollView {
+  height: clamp(22rem, 62vw, 34rem);
+  overflow: hidden;
+}
+.scrollImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(0);
+  transition: transform 9s cubic-bezier(0.45, 0, 0.55, 1);
+}
+.scrollWin:hover .scrollImg,
+.scrollWin:focus .scrollImg {
+  /* image is ~5.7× as tall as wide; scroll to (nearly) the bottom */
+  transform: translateY(calc(-100% + clamp(22rem, 62vw, 34rem)));
+}
+@media (hover: none) {
+  .scrollView {
+    overflow-y: auto;
+  }
+  .scrollImg {
+    transition: none;
+  }
+}
+
+/* ─── Roles ─── */
+.role {
+  height: 100%;
+  padding: 1.25rem;
+  border-radius: 1.1rem;
+  border: 1px solid var(--border-subtle);
+  background: var(--cs-card);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+.role:hover {
+  transform: translateY(-4px);
+  border-color: var(--cs-line);
+}
+
+/* ─── Information architecture map ─── */
+.ia {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 560px) {
+  .ia {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .ia {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.iaCol {
+  position: relative;
+  padding: 1.1rem 1.1rem 1.2rem;
+  border-radius: 1rem;
+  background: var(--cs-card);
+  border: 1px solid var(--border-subtle);
+}
+.iaHead {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--cs-line);
+  font-weight: 700;
+}
+.iaIcon {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cs-ink);
+  background: var(--cs-soft);
+}
+.iaItem {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+.iaItem + .iaItem {
+  margin-top: 0.35rem;
+}
+.iaItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.45rem;
+  height: 1px;
+  background: var(--cs-line);
+}
+
+/* ─── Admission stepper ─── */
+.steps {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 640px) {
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .steps {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0;
+  }
+}
+.step {
+  position: relative;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition-delay: calc(var(--i) * 100ms);
+}
+:global(.visible) .step {
+  opacity: 1;
+  transform: none;
+}
+.stepDot {
+  position: relative;
+  z-index: 1;
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cs-ink);
+  background: var(--bg-primary);
+  border: 2px solid var(--cs-line);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.step:first-child .stepDot,
+.step:hover .stepDot {
+  color: #fff;
+  background: var(--cs);
+  border-color: var(--cs);
+}
+@media (min-width: 1024px) {
+  .step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 1.5rem;
+    left: calc(50% + 1.85rem);
+    right: calc(-50% + 1.85rem);
+    border-top: 2px dashed var(--cs-line);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroWin,
+  .heroPhone,
+  .stackMain,
+  .stackSub,
+  .scrollImg {
+    transition: none;
+  }
+  .scrollView {
+    overflow-y: auto;
+  }
+  .step {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

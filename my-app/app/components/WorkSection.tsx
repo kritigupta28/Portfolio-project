@@ -12,8 +12,16 @@ type Project = {
   category: string;
   description: string;
   tags: string[];
-  caseStudy?: { href: string; screens: string[] };
+  caseStudy?: {
+    href: string;
+    theme: "fizvizz" | "lacs" | "nest";
+    /** phones: fanned phone screens; desktop: overlapping browser windows */
+    layout: "phones" | "desktop";
+    screens: { src: string; w: number; h: number }[];
+  };
 };
+
+const coverTheme = { fizvizz: w.coverFizvizz, lacs: w.coverLacs, nest: w.coverNest };
 
 const projects: Project[] = [
   {
@@ -26,7 +34,13 @@ const projects: Project[] = [
     tags: ["Digital Cards", "QR Sharing", "Events & Groups"],
     caseStudy: {
       href: "/work/fizvizz",
-      screens: ["qr-share-card.png", "home-pending.png", "events-attend.png"],
+      theme: "fizvizz",
+      layout: "phones",
+      screens: [
+        { src: "/case-studies/fizvizz/qr-share-card.png", w: 474, h: 913 },
+        { src: "/case-studies/fizvizz/home-pending.png", w: 474, h: 914 },
+        { src: "/case-studies/fizvizz/events-attend.png", w: 474, h: 914 },
+      ],
     },
   },
   {
@@ -55,6 +69,15 @@ const projects: Project[] = [
     description:
       "Worked across Student, Teacher, Staff, Transportation, Attendance, Fees, Reports, and Exam/Assessment modules, with requirements aligned to UDISE / PSP compatibility.",
     tags: ["Attendance", "Fees & Reports", "Exams"],
+    caseStudy: {
+      href: "/work/nest-school-erp",
+      theme: "nest",
+      layout: "desktop",
+      screens: [
+        { src: "/case-studies/nest/app/dashboard.png", w: 2880, h: 1800 },
+        { src: "/case-studies/nest/app/log-attendance.png", w: 2880, h: 1800 },
+      ],
+    },
   },
   {
     id: "lacs",
@@ -74,6 +97,12 @@ const peek = [
   "right-0 sm:right-[3%] rotate-[8deg] w-[24%] sm:w-[17%] md:w-[13%]",
 ];
 
+// Overlapping browser windows for desktop products (back, then front).
+const windows = [
+  "right-[4%] top-[12%] w-[60%] sm:w-[44%] md:w-[40%] -rotate-[3deg]",
+  "right-[30%] top-[40%] w-[32%] md:w-[28%] rotate-[2deg] z-10 hidden sm:block",
+];
+
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const cs = project.caseStudy;
 
@@ -82,13 +111,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {/* Cover */}
       <div
         className={`relative overflow-hidden border-b border-[var(--border-subtle)] ${
-          cs ? `${w.fzCover} h-56 sm:h-64` : "bg-gradient-to-br from-[var(--bg-card-hover)] to-[var(--bg-secondary)] h-40 sm:h-48"
+          cs ? `${w.cover} ${coverTheme[cs.theme]} h-56 sm:h-64` : "bg-gradient-to-br from-[var(--bg-card-hover)] to-[var(--bg-secondary)] h-40 sm:h-48"
         }`}
       >
         <span
           aria-hidden
           className={`project-image absolute -bottom-6 text-[9rem] sm:text-[11rem] font-black leading-none text-[var(--text-primary)] opacity-[0.06] select-none ${
-            cs ? `${w.fzNum} left-[38%] hidden sm:block` : "-right-2"
+            cs ? `${w.num} left-[38%] hidden sm:block` : "-right-2"
           }`}
         >
           {String(index + 1).padStart(2, "0")}
@@ -111,18 +140,35 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </>
         )}
 
-        {cs?.screens.map((src, k) => (
-          <Image
-            key={src}
-            src={`/case-studies/fizvizz/${src}`}
-            alt=""
-            width={474}
-            height={914}
-            sizes="(max-width: 640px) 30vw, 180px"
-            className={`absolute top-[18%] sm:top-[14%] h-auto drop-shadow-xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-3 ${peek[k]}`}
-            style={{ transitionDelay: `${k * 60}ms` }}
-          />
-        ))}
+        {cs?.layout === "phones" &&
+          cs.screens.map((sc, k) => (
+            <Image
+              key={sc.src}
+              src={sc.src}
+              alt=""
+              width={sc.w}
+              height={sc.h}
+              sizes="(max-width: 640px) 30vw, 180px"
+              className={`absolute top-[18%] sm:top-[14%] h-auto drop-shadow-xl transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-3 ${peek[k]}`}
+              style={{ transitionDelay: `${k * 60}ms` }}
+            />
+          ))}
+
+        {cs?.layout === "desktop" &&
+          cs.screens.slice(0, 2).map((sc, k) => (
+            <div
+              key={sc.src}
+              className={`${w.win} ${windows[k]} group-hover:-translate-y-2`}
+              style={{ transitionDelay: `${k * 60}ms` }}
+            >
+              <div className={w.winBar} aria-hidden>
+                <i />
+                <i />
+                <i />
+              </div>
+              <Image src={sc.src} alt="" width={sc.w} height={sc.h} sizes="(max-width: 640px) 60vw, 420px" className="block w-full h-auto" />
+            </div>
+          ))}
 
         <div className="relative h-full p-6 md:p-8 flex flex-col justify-end items-start gap-3">
           {cs && (

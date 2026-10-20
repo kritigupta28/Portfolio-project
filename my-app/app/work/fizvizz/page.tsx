@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties } from "react";
 import CustomCursor from "../../components/CustomCursor";
 import Footer from "../../components/Footer";
 import ScrollReveal from "../../components/ScrollReveal";
-import ThemeToggle from "../../components/ThemeToggle";
 import {
   Arrow,
   ChatBubble,
   Circle,
   Connector,
   Crop,
+  Fan,
   FizvizzMark,
   Heart,
   Screen,
@@ -22,7 +22,7 @@ import {
   Squiggle,
   Star,
 } from "./parts";
-import s from "./case.module.css";
+import { CaseHeader, Icon, SectionTitle, kit as s } from "../_kit/parts";
 
 export const metadata: Metadata = {
   title: "Fizvizz — UX/UI Case Study · Kriti Gupta",
@@ -165,68 +165,6 @@ const takeaways = [
   { title: "Every share is an invitation", body: "The mobile web view turns recipients without the app into new users." },
 ];
 
-/* ─────────────────────────── small pieces ─────────────────────────── */
-
-function Icon({ name, className = "w-5 h-5" }: { name: string; className?: string }) {
-  const p = { fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
-  const paths: Record<string, ReactNode> = {
-    screens: (<><rect x="6" y="3" width="12" height="18" rx="2.5" {...p} /><path d="M10 18h4" {...p} /></>),
-    modules: (<><rect x="3.5" y="3.5" width="7" height="7" rx="1.6" {...p} /><rect x="13.5" y="3.5" width="7" height="7" rx="1.6" {...p} /><rect x="3.5" y="13.5" width="7" height="7" rx="1.6" {...p} /><rect x="13.5" y="13.5" width="7" height="7" rx="1.6" {...p} /></>),
-    signup: (<><circle cx="10" cy="8" r="3.5" {...p} /><path d="M3.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M18 8v6M15 11h6" {...p} /></>),
-    star: <path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8L3.5 9.7l5.9-.8z" {...p} />,
-    qr: (<><rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1" {...p} /><rect x="14" y="3.5" width="6.5" height="6.5" rx="1" {...p} /><rect x="3.5" y="14" width="6.5" height="6.5" rx="1" {...p} /><path d="M14 14h2.5v2.5H14zM18 18h2.5v2.5H18zM14 20.5h1M20.5 14v1.5" {...p} /></>),
-    cards: (<><rect x="3" y="7" width="14" height="10" rx="2" {...p} /><path d="M7 4h12a2 2 0 012 2v8" {...p} /><path d="M6.5 11h4M6.5 13.5h6" {...p} /></>),
-    shield: (<><path d="M12 3l7.5 3v5.5c0 4.6-3.1 8.2-7.5 9.5-4.4-1.3-7.5-4.9-7.5-9.5V6z" {...p} /><path d="M9 12l2 2 4-4" {...p} /></>),
-    people: (<><circle cx="8.5" cy="9" r="3" {...p} /><circle cx="16.5" cy="8" r="2.5" {...p} /><path d="M3 19c.7-3.2 2.9-5 5.5-5s4.8 1.8 5.5 5M14.5 13.4c2.6-.6 5.2.8 6 4.6" {...p} /></>),
-    check: <path d="M5 12.5l4.5 4.5L19 7.5" {...p} />,
-    external: <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" {...p} />,
-  };
-  return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden>
-      {paths[name]}
-    </svg>
-  );
-}
-
-function SectionTitle({ eyebrow, lead, accent, center = false }: { eyebrow?: string; lead: string; accent: string; center?: boolean }) {
-  return (
-    <div className={center ? "text-center" : ""}>
-      {eyebrow && <p className="text-xs font-semibold tracking-[0.3em] uppercase text-[var(--text-muted)] mb-3">{eyebrow}</p>}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight">
-        {lead} <span className={s.accent}>{accent}</span>
-      </h2>
-      <span className={`${s.underline} ${center ? "mx-auto" : ""}`} aria-hidden />
-    </div>
-  );
-}
-
-/** 1–3 screens fanned like a hand of cards. The middle screen sits on top. */
-function Fan({ keys, className = "" }: { keys: ScreenKey[]; className?: string }) {
-  if (keys.length === 1) {
-    return (
-      <div className={`relative mx-auto w-[58%] max-w-[300px] ${className}`}>
-        <Screen k={keys[0]} className={s.lift} sizes="(max-width: 768px) 58vw, 300px" />
-      </div>
-    );
-  }
-  const [a, b, c] = keys;
-  return (
-    <div className={`${s.fan} mx-auto w-full max-w-[520px] aspect-[1.08] ${className}`}>
-      <div className={`${s.fanSide} ${s.fanLeft}`}>
-        <Screen k={a} sizes="(max-width: 768px) 38vw, 200px" />
-      </div>
-      {c && (
-        <div className={`${s.fanSide} ${s.fanRight}`}>
-          <Screen k={c} sizes="(max-width: 768px) 38vw, 200px" />
-        </div>
-      )}
-      <div className={s.fanCenter}>
-        <Screen k={b} className={s.lift} sizes="(max-width: 768px) 46vw, 240px" />
-      </div>
-    </div>
-  );
-}
-
 /* Scattered paper cards turning into one phone — the problem in one picture. */
 function ProblemArt() {
   const card = (x: number, y: number, r: number, key: number) => (
@@ -272,23 +210,9 @@ export default function FizvizzCaseStudy() {
     <>
       <CustomCursor />
 
-      {/* Top bar */}
-      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-full max-w-5xl px-4 sm:px-6">
-        <nav className="bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-full pl-3 pr-2.5 sm:pl-5 py-2.5 flex items-center justify-between gap-3 shadow-[0_20px_50px_var(--accent-glow)] backdrop-blur-md">
-          <Link href="/#work" className="group flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
-            <span className="inline-block transition-transform group-hover:-translate-x-1">←</span>
-            <span className="hidden sm:inline">All work</span>
-            <span className="sm:hidden">Work</span>
-          </Link>
-          <Link href="/" className="flex items-center gap-2" aria-label="Kriti Gupta, home">
-            <span className="w-8 h-8 rounded-full bg-[var(--accent-brand)] flex items-center justify-center text-[var(--bg-primary)] font-bold text-sm">K</span>
-            <span className="font-bold text-base tracking-wide">Kriti</span>
-          </Link>
-          <ThemeToggle />
-        </nav>
-      </header>
+      <CaseHeader />
 
-      <main className={`${s.page} overflow-x-clip`}>
+      <main className={`${s.page} ${s.themeFizvizz} overflow-x-clip`}>
         {/* ── Hero ── */}
         <section id="hero" className="relative pt-32 md:pt-40 pb-16 md:pb-24">
           <div className={`${s.glow} ${s.glowA}`} aria-hidden />
