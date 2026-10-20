@@ -11,7 +11,6 @@ import {
   ChatBubble,
   Circle,
   Connector,
-  CropImg,
   Heart,
   Icon,
   SectionTitle,
@@ -511,10 +510,10 @@ export default function TeamdayCaseStudy() {
             <ScrollReveal>
               <SectionTitle eyebrow="Visual language" lead="Design" accent="System" />
             </ScrollReveal>
-            <div className="mt-12 grid lg:grid-cols-[1fr_1.2fr] gap-12">
+            <div className="mt-12">
               <ScrollReveal>
                 <h3 className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)] mb-4">Colour</h3>
-                <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
                   {palette.map((c) => (
                     <li key={c.hex} className={s.swatch} style={{ background: c.hex, color: c.ink }}>
                       <span className="text-sm font-semibold">{c.name}</span>
@@ -528,22 +527,6 @@ export default function TeamdayCaseStudy() {
                     <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)]">Type</p>
                     <p className="font-bold text-lg mt-1">Geometric sans → system sans</p>
                     <p className="text-sm text-[var(--text-secondary)]">Rounded geometric type in the concepts; a fast system stack in the shipped app.</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={120}>
-                <h3 className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)] mb-4">Components</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="row-span-2">
-                    <CropImg shot={shots.storyDetail} x={50} y={300} w={520} h={560} label="Boards rail" />
-                  </div>
-                  <CropImg shot={shots.todayPlan} x={2410} y={20} w={460} h={90} label="End of Day & Break" />
-                  <CropImg shot={shots.storyDetail} x={1830} y={950} w={640} h={80} label="Status, estimate & actual chips" />
-                  <div className="col-span-2">
-                    <CropImg shot={shots.todayPlan} x={1700} y={180} w={1130} h={170} label="Time stats" />
-                  </div>
-                  <div className="col-span-2">
-                    <CropImg shot={shots.storyDetail} x={690} y={610} w={960} h={380} label="Story card" />
                   </div>
                 </div>
               </ScrollReveal>

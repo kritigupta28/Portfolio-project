@@ -11,7 +11,6 @@ import {
   ChatBubble,
   Circle,
   Connector,
-  CropImg,
   Heart,
   Icon,
   SectionTitle,
@@ -582,10 +581,10 @@ export default function NestCaseStudy() {
             <ScrollReveal>
               <SectionTitle eyebrow="Visual language" lead="Design" accent="System" />
             </ScrollReveal>
-            <div className="mt-12 grid lg:grid-cols-[1fr_1.2fr] gap-12">
+            <div className="mt-12">
               <ScrollReveal>
                 <h3 className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)] mb-4">Colour</h3>
-                <ul className="grid grid-cols-2 gap-3">
+                <ul className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {palette.map((c) => (
                     <li key={c.hex} className={s.swatch} style={{ background: c.hex, color: c.ink }}>
                       <span className="text-sm font-semibold">{c.name}</span>
@@ -599,22 +598,6 @@ export default function NestCaseStudy() {
                     <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)]">Type</p>
                     <p className="font-bold text-lg mt-1">System UI sans</p>
                     <p className="text-sm text-[var(--text-secondary)]">Fast-loading native type: bold teal headings, calm grey metadata, tabular numbers in tables.</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={120}>
-                <h3 className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)] mb-4">Components</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="row-span-2">
-                    <CropImg shot={shots.dashboard} x={20} y={120} w={480} h={960} label="Sidebar with active state" />
-                  </div>
-                  <CropImg shot={shots.dashboard} x={1720} y={460} w={1124} h={500} label="Quick actions" />
-                  <CropImg shot={shots.logAttendance} x={1900} y={690} w={930} h={120} label="Tick / cross attendance" />
-                  <div className="col-span-2">
-                    <CropImg shot={shots.dashboard} x={556} y={1010} w={2280} h={210} label="KPI tiles" />
-                  </div>
-                  <div className="col-span-2">
-                    <CropImg shot={shots.addStudent} x={520} y={370} w={1360} h={160} label="Admission stepper" />
                   </div>
                 </div>
               </ScrollReveal>

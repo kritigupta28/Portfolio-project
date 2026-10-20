@@ -92,6 +92,27 @@
   --b3: #143326;
 }
 
+.coverPsd {
+  --line: rgba(58, 95, 134, 0.4);
+  --num: #3a5f86;
+  --edge: rgba(58, 95, 134, 0.16);
+  --g1: rgba(242, 140, 40, 0.18);
+  --g2: rgba(58, 95, 134, 0.22);
+  --b1: #eaf0f6;
+  --b2: #f6f8fb;
+  --b3: #dfe7f0;
+}
+:global([data-theme="dark"]) .coverPsd {
+  --line: rgba(169, 198, 230, 0.36);
+  --num: #a9c6e6;
+  --edge: rgba(169, 198, 230, 0.14);
+  --g1: rgba(242, 140, 40, 0.16);
+  --g2: rgba(74, 118, 164, 0.45);
+  --b1: #0e1a27;
+  --b2: #122233;
+  --b3: #172a3f;
+}
+
 /* Dot grid that fades in towards the screens */
 .cover::before {
   content: "";
@@ -173,6 +194,100 @@
 
 @media (prefers-reduced-motion: reduce) {
   .doodle {
+    animation: none;
+  }
+}
+
+/* "Uploading soon" placeholder window for case studies still being written */
+.soon {
+  position: absolute;
+  right: 6%;
+  top: 16%;
+  width: min(46%, 22rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0 1rem 1rem;
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px dashed var(--line);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+:global([data-theme="dark"]) .soon {
+  background: rgba(255, 255, 255, 0.05);
+}
+:global(.group):hover .soon {
+  transform: translateY(-6px) rotate(-1deg);
+}
+.soonBar {
+  display: flex;
+  gap: 4px;
+  margin: 0 -1rem 0.2rem;
+  padding: 0.45rem 0.7rem;
+  border-bottom: 1px dashed var(--line);
+}
+.soonBar i {
+  width: 6px;
+  height: 6px;
+  border-radius: 99px;
+  background: var(--line);
+}
+.soonLine {
+  display: block;
+  height: 0.5rem;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--edge), var(--line), var(--edge));
+  background-size: 220% 100%;
+  animation: soonShimmer 2.2s ease-in-out infinite;
+}
+.soonChip {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.3rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--num);
+  border: 1px solid var(--line);
+}
+.soonDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 99px;
+  background: #f28c28;
+  animation: soonBlink 1.6s ease-in-out infinite;
+}
+@keyframes soonShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -120% 0;
+  }
+}
+@keyframes soonBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+@media (max-width: 640px) {
+  .soon {
+    width: 54%;
+    top: 12%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .soonLine,
+  .soonDot {
     animation: none;
   }
 }

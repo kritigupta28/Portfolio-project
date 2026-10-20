@@ -84,6 +84,27 @@
   --cs-card: var(--bg-card);
 }
 
+/* PSD Cloud: structural steel blue with a safety-orange highlight */
+.themePsd {
+  --cs: #3a5f86;
+  --cs-hover: #2f4f72;
+  --cs-deep: #172a3f;
+  --cs-alt: #f28c28;
+  --cs-alt-ink: #1b1206;
+  --cs-ink: #335a82;
+  --cs-soft: #e9eff6;
+  --cs-line: rgba(58, 95, 134, 0.45);
+  --cs-card: #ffffff;
+}
+:global([data-theme="dark"]) .themePsd {
+  --cs: #4a76a4;
+  --cs-hover: #5784b3;
+  --cs-ink: #a9c6e6;
+  --cs-soft: rgba(74, 118, 164, 0.16);
+  --cs-line: rgba(169, 198, 230, 0.4);
+  --cs-card: var(--bg-card);
+}
+
 .accent {
   color: var(--cs-ink);
 }

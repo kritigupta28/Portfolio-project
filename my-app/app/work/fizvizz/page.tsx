@@ -10,7 +10,6 @@ import {
   ChatBubble,
   Circle,
   Connector,
-  Crop,
   Fan,
   FizvizzMark,
   Heart,
@@ -508,10 +507,10 @@ export default function FizvizzCaseStudy() {
             <ScrollReveal>
               <SectionTitle eyebrow="Visual language" lead="Design" accent="System" />
             </ScrollReveal>
-            <div className="mt-12 grid lg:grid-cols-[1.1fr_1fr] gap-12">
+            <div className="mt-12">
               <ScrollReveal>
                 <h3 className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)] mb-4">Colour</h3>
-                <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
                   {palette.map((c) => (
                     <li key={c.hex} className={s.swatch} style={{ background: c.hex, color: c.ink }}>
                       <span className="text-sm font-semibold">{c.name}</span>
@@ -525,19 +524,6 @@ export default function FizvizzCaseStudy() {
                     <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)]">Type</p>
                     <p className="font-bold text-lg mt-1">Rounded, friendly sans</p>
                     <p className="text-sm text-[var(--text-secondary)]">Bold titles, quiet grey metadata, generous line height for scanning lists.</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={120}>
-                <h3 className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)] mb-4">Components</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <Crop k="homePending" x={236} y={90} w={164} h={40} label="Segmented control" />
-                  <Crop k="homePending" x={318} y={48} w={90} h={40} label="Scan & notifications" />
-                  <div className="col-span-2">
-                    <Crop k="homePending" x={74} y={174} w={326} h={70} label="Request counters" />
-                  </div>
-                  <div className="col-span-2">
-                    <Crop k="homePending" x={57} y={762} w={360} h={70} label="Bottom navigation with central QR" />
                   </div>
                 </div>
               </ScrollReveal>

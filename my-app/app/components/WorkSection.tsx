@@ -14,14 +14,14 @@ type Project = {
   tags: string[];
   caseStudy?: {
     href: string;
-    theme: "fizvizz" | "lacs" | "nest" | "teamday";
-    /** phones: fanned phone screens; desktop: overlapping browser windows */
-    layout: "phones" | "desktop";
+    theme: "fizvizz" | "lacs" | "nest" | "teamday" | "psd";
+    /** phones: fanned phone screens; desktop: overlapping browser windows; soon: placeholder until the case study is ready */
+    layout: "phones" | "desktop" | "soon";
     screens: { src: string; w: number; h: number }[];
   };
 };
 
-const coverTheme = { fizvizz: w.coverFizvizz, lacs: w.coverLacs, nest: w.coverNest, teamday: w.coverTeamday };
+const coverTheme = { fizvizz: w.coverFizvizz, lacs: w.coverLacs, nest: w.coverNest, teamday: w.coverTeamday, psd: w.coverPsd };
 
 const projects: Project[] = [
   {
@@ -51,6 +51,7 @@ const projects: Project[] = [
     description:
       "Designed enterprise workflows across RFI Tracking, Document Control, Employee Management, Admin Portal, Permission & Access Management, Job Data, Client Management, and Client Portal.",
     tags: ["RFI Tracking", "Document Control", "Access Management"],
+    caseStudy: { href: "/work/psd-cloud", theme: "psd", layout: "soon", screens: [] },
   },
   {
     id: "teamday",
@@ -124,6 +125,7 @@ const windows = [
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const cs = project.caseStudy;
+  const soon = cs?.layout === "soon";
 
   const body = (
     <>
@@ -159,6 +161,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </>
         )}
 
+        {soon && (
+          <div className={w.soon} aria-hidden>
+            <span className={w.soonBar}><i /><i /><i /></span>
+            <span className={w.soonLine} style={{ width: "58%" }} />
+            <span className={w.soonLine} style={{ width: "82%" }} />
+            <span className={w.soonLine} style={{ width: "44%" }} />
+            <span className={w.soonChip}>
+              <span className={w.soonDot} />
+              Uploading soon
+            </span>
+          </div>
+        )}
+
         {cs?.layout === "phones" &&
           cs.screens.map((sc, k) => (
             <Image
@@ -192,7 +207,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className="relative h-full p-6 md:p-8 flex flex-col justify-end items-start gap-3">
           {cs && (
             <span className="px-3 py-1 rounded-full text-[10px] font-semibold tracking-[0.2em] uppercase bg-[var(--text-primary)] text-[var(--bg-primary)]">
-              Case study
+              {soon ? "Coming soon" : "Case study"}
             </span>
           )}
           <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">{project.title}</p>
@@ -222,7 +237,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </div>
           {cs && (
             <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold">
-              View case study
+              {soon ? "Preview" : "View case study"}
               <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </span>
           )}

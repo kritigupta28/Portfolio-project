@@ -9,7 +9,6 @@ import {
   ChatBubble,
   Circle,
   Connector,
-  Crop,
   Fan,
   LacsMark,
   LIcon,
@@ -181,27 +180,27 @@ const formats: { k: ScreenKey; title: string; body: string; icon: string }[] = [
 const principles: {
   title: string;
   body: string;
-  crop: { k: ScreenKey; x: number; y: number; w: number; h: number; label: string };
+  art: "sos" | "chips" | "alert" | "camera";
 }[] = [
   {
     title: "Big, unmissable targets",
     body: "SOS is a full-width button, and reporting options are large tiles rather than a list.",
-    crop: { k: "home", x: 20, y: 136, w: 336, h: 80, label: "Emergency SOS button" },
+    art: "sos",
   },
   {
     title: "Tap, don't type",
     body: "Quick-message chips turn a sentence into a single tap; writing stays optional.",
-    crop: { k: "photoReview", x: 16, y: 648, w: 344, h: 140, label: "Quick-message chips with Send" },
+    art: "chips",
   },
   {
     title: "Red means emergency",
     body: "Red marks the SOS button, the alert headline, recording and map pins. Everyday actions stay a calm blue.",
-    crop: { k: "alertRaised", x: 16, y: 88, w: 328, h: 60, label: "Emergency Alert Raised headline" },
+    art: "alert",
   },
   {
     title: "Nothing to misread",
     body: "Capture screens show only the controls needed: close, gallery, shutter and flip.",
-    crop: { k: "capturePhoto", x: 16, y: 664, w: 344, h: 100, label: "Camera controls" },
+    art: "camera",
   },
 ];
 
@@ -283,6 +282,55 @@ function ProblemArt() {
       <circle cx="272" cy="232" r="3" className={l.artLed} />
       <circle cx="282" cy="232" r="3" className={l.artLed} />
     </svg>
+  );
+}
+
+/* Small pieces of the LACS UI, rebuilt in code so they stay sharp at any size. */
+function PrincipleArt({ kind }: { kind: "sos" | "chips" | "alert" | "camera" }) {
+  if (kind === "sos") {
+    return (
+      <div className={l.artSos} aria-hidden>
+        <svg viewBox="0 0 24 24" className="w-5 h-5">
+          <path d="M5 18h14M7 18v-5a5 5 0 0110 0v5M12 3v2M4.2 6.2l1.4 1.4M19.8 6.2l-1.4 1.4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+        Emergency SOS
+      </div>
+    );
+  }
+  if (kind === "chips") {
+    return (
+      <div className="w-full" aria-hidden>
+        <div className="flex flex-wrap gap-1.5">
+          {["We are stuck here", "There is an earthquake", "Need medical help"].map((c) => (
+            <span key={c} className={l.artChip}>{c}</span>
+          ))}
+        </div>
+        <div className={l.artSend}>Send</div>
+      </div>
+    );
+  }
+  if (kind === "alert") {
+    return (
+      <div className="w-full text-center" aria-hidden>
+        <p className={l.artAlert}>Emergency Alert Raised</p>
+        <p className="mt-1.5 text-xs text-[var(--text-secondary)]">Rohan Verma · Sent a video</p>
+        <span className={l.artPin}>
+          <svg viewBox="0 0 24 24" className="w-4 h-4"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0113 0c0 5-6.5 11-6.5 11z" fill="currentColor" /><circle cx="12" cy="10" r="2.4" fill="#fff" /></svg>
+          Location attached
+        </span>
+      </div>
+    );
+  }
+  return (
+    <div className={l.artCamera} aria-hidden>
+      <span className={l.artCamBtn}>
+        <svg viewBox="0 0 24 24" className="w-4 h-4"><rect x="4" y="5" width="16" height="14" rx="2.5" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M4 16l4.5-4.5L13 16l2.5-2.5L20 18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" /></svg>
+      </span>
+      <span className={l.artShutter} />
+      <span className={l.artCamBtn}>
+        <svg viewBox="0 0 24 24" className="w-4 h-4"><path d="M4 12a8 8 0 0113.7-5.6M20 12a8 8 0 01-13.7 5.6M17.5 3v3.6h-3.6M6.5 21v-3.6h3.6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+      </span>
+    </div>
   );
 }
 
@@ -645,7 +693,7 @@ export default function LacsCaseStudy() {
                   <ScrollReveal key={p.title} delay={i * 100} className="h-full">
                     <div role="listitem" className={l.principle}>
                       <div className={l.stage}>
-                        <Crop {...p.crop} />
+                        <PrincipleArt kind={p.art} />
                       </div>
                       <div>
                         <h3 className="font-bold text-lg leading-snug">
@@ -668,10 +716,10 @@ export default function LacsCaseStudy() {
             <ScrollReveal>
               <SectionTitle eyebrow="Visual language" lead="Design" accent="System" />
             </ScrollReveal>
-            <div className="mt-12 grid lg:grid-cols-[1.1fr_1fr] gap-12">
+            <div className="mt-12">
               <ScrollReveal>
                 <h3 className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)] mb-4">Colour</h3>
-                <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
                   {palette.map((c) => (
                     <li key={c.hex} className={s.swatch} style={{ background: c.bg, color: c.ink }}>
                       <span className="text-sm font-semibold">{c.name}</span>
@@ -697,22 +745,6 @@ export default function LacsCaseStudy() {
                     <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)]">Type</p>
                     <p className="font-bold text-lg mt-1">Clean, neutral sans</p>
                     <p className="text-sm text-[var(--text-secondary)]">Bold names and headings, regular messages, small grey timestamps — legible at a glance.</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={120}>
-                <h3 className="text-xs font-semibold tracking-[0.25em] uppercase text-[var(--text-muted)] mb-4">Components</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="col-span-2">
-                    <Crop k="home" x={16} y={452} w={344} h={150} label="Quick tiles with unread counts" />
-                  </div>
-                  <div className="col-span-2">
-                    <Crop k="alertsUnread" x={8} y={158} w={360} h={143} label="Alert rows: unread vs read" />
-                  </div>
-                  <Crop k="alertDetailImage" x={76} y={304} w={224} h={74} label="Call & Chat" />
-                  <Crop k="audioReview" x={92} y={402} w={192} h={62} label="Playback controls" />
-                  <div className="col-span-2">
-                    <Crop k="alertDetailVideo" x={16} y={748} w={344} h={50} label="Primary action: Mark as Resolved" />
                   </div>
                 </div>
               </ScrollReveal>
