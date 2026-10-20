@@ -1,0 +1,284 @@
+/* LACS-only additions on top of the shared case-study kit. Every brand colour
+   comes from the .themeLacs vars so light and dark themes both work. */
+
+/* ─── Product mark ─── */
+.markShield {
+  fill: var(--cs);
+}
+.markInk {
+  fill: #fff;
+}
+.markWave {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+.markSos {
+  fill: var(--cs-alt);
+  stroke: var(--bg-primary);
+  stroke-width: 2;
+}
+.productLabel {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+@media (max-width: 400px) {
+  .productLabel {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* ─── User flow: two lanes, four steps each ─── */
+.lane {
+  /* flow nodes paint their centre with --bg-primary; match the card */
+  --bg-primary: var(--cs-card);
+  position: relative;
+  display: grid;
+  gap: 1.75rem;
+  padding: 1.5rem 1.25rem;
+  border-radius: 1.5rem;
+  background: var(--cs-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--cs-deep) 6%, transparent);
+}
+@media (min-width: 640px) {
+  .lane {
+    padding: 1.75rem 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .lane {
+    grid-template-columns: 12rem minmax(0, 1fr);
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 2.25rem;
+  }
+}
+.reporter {
+  --cs: var(--cs-alt);
+  --cs-ink: color-mix(in srgb, var(--cs-alt) 78%, #000);
+  --cs-soft: color-mix(in srgb, var(--cs-alt) 10%, transparent);
+  --cs-line: color-mix(in srgb, var(--cs-alt) 50%, transparent);
+}
+:global([data-theme="dark"]) .reporter {
+  --cs-ink: color-mix(in srgb, var(--cs-alt) 55%, #fff);
+  --cs-soft: color-mix(in srgb, var(--cs-alt) 16%, transparent);
+}
+.laneHead {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+@media (min-width: 1024px) {
+  .laneHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.laneTag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cs-ink);
+}
+ol.flow4 {
+  margin-top: 0;
+}
+@media (min-width: 1024px) {
+  ol.flow4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.relay {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-block: 2.25rem;
+}
+.relay::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  border-left: 2px dashed var(--cs-line);
+}
+.relayPill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 100%;
+  padding: 0.55rem 1rem 0.55rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: left;
+  background: var(--cs-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--cs-deep) 14%, transparent);
+}
+.relayIcon {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--cs);
+}
+
+/* ─── Designing for stress: principle cards with the evidence cropped in ─── */
+.principle {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  background: var(--cs-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--cs-deep) 6%, transparent);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+.principle:hover {
+  transform: translateY(-4px);
+  border-color: var(--cs-line);
+}
+.stage {
+  display: flex;
+  align-items: center;
+  min-height: 8.25rem;
+  padding: 0.85rem;
+  border-radius: 1rem;
+  background: var(--cs-soft);
+}
+.stage > figure {
+  width: 100%;
+  margin: 0;
+}
+.principle figcaption {
+  display: none;
+}
+
+/* ─── Design system: report-type tints sampled from the screens ─── */
+.tints {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+@media (min-width: 640px) {
+  .tints {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.tint {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: #1b1b1b;
+}
+.tintDot {
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+/* ─── Problem illustration: a failed tower vs. a local hub meshing phones ─── */
+.artShadow {
+  fill: var(--cs);
+  opacity: 0.1;
+}
+.artTower {
+  fill: none;
+  stroke: color-mix(in srgb, var(--text-primary) 38%, transparent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.artWaveDead {
+  fill: none;
+  stroke: color-mix(in srgb, var(--text-primary) 22%, transparent);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 3 6;
+}
+.artCrack {
+  fill: none;
+  stroke: var(--cs-alt);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.artSos {
+  fill: var(--cs-alt);
+}
+.artSosInk {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+}
+.artMesh {
+  fill: none;
+  stroke: var(--cs-line);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 5 7;
+}
+.artHub {
+  fill: var(--cs-deep);
+  stroke: color-mix(in srgb, var(--cs) 55%, transparent);
+  stroke-width: 1.5;
+}
+.artHubText {
+  font: 800 11px/1 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.12em;
+  fill: #fff;
+}
+.artWave {
+  fill: none;
+  stroke: var(--cs);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+}
+.artLed {
+  fill: var(--cs);
+}
+.artPhone {
+  fill: var(--cs-deep);
+  stroke: color-mix(in srgb, var(--cs) 45%, transparent);
+  stroke-width: 1.5;
+}
+.artScreen {
+  fill: #fff;
+}
+.artBlue {
+  fill: var(--cs);
+}
+.artGrey {
+  fill: none;
+  stroke: #c3cbd6;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.artMark {
+  font: 900 34px/1 Arial, Helvetica, sans-serif;
+  fill: var(--cs-alt);
+}

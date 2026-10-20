@@ -537,7 +537,7 @@ export default function FizvizzCaseStudy() {
                     <Crop k="homePending" x={74} y={174} w={326} h={70} label="Request counters" />
                   </div>
                   <div className="col-span-2">
-                    <Crop k="homePending" x={57} y={758} w={360} h={86} label="Bottom navigation with central QR" />
+                    <Crop k="homePending" x={57} y={762} w={360} h={70} label="Bottom navigation with central QR" />
                   </div>
                 </div>
               </ScrollReveal>

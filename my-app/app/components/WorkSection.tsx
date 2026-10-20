@@ -87,6 +87,16 @@ const projects: Project[] = [
     description:
       "Designed Feed, Messaging, and SOS/Emergency experiences for a portable local communication system built for situations where internet or mobile connectivity is unavailable or disrupted.",
     tags: ["Feed", "Messaging", "SOS / Emergency"],
+    caseStudy: {
+      href: "/work/lacs",
+      theme: "lacs",
+      layout: "phones",
+      screens: [
+        { src: "/case-studies/lacs/sos-add-info.png", w: 376, h: 816 },
+        { src: "/case-studies/lacs/home.png", w: 376, h: 1000 },
+        { src: "/case-studies/lacs/alert-detail-video.png", w: 376, h: 815 },
+      ],
+    },
   },
 ];
 

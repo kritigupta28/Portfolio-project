@@ -79,10 +79,12 @@ export function CropImg({
           height={shot.h}
           sizes="(max-width: 768px) 90vw, 480px"
           className={s.cropImg}
+          // Offset relative to the image itself; % top/left would follow the frame's border box and drift.
           style={{
             width: `${(shot.w / w) * 100}%`,
-            left: `${(-x / w) * 100}%`,
-            top: `${(-y / h) * 100}%`,
+            left: 0,
+            top: 0,
+            transform: `translate(${(-x / shot.w) * 100}%, ${(-y / shot.h) * 100}%)`,
           }}
         />
       </div>
