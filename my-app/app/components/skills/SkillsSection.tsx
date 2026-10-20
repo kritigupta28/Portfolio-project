@@ -8,7 +8,7 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
   type PointerEvent as ReactPointerEvent,
 } from "react";
-import ToolIcon from "./ToolIcon";
+import ToolLogo from "./ToolLogo";
 import { allTools, brandColor, skillGroups, toolGroups, type IconKey } from "./data";
 import s from "./SkillsSection.module.css";
 
@@ -995,7 +995,7 @@ export default function SkillsSection() {
                         <circle className={s.ringKbd} cx="20" cy="20" r="25" pathLength={100} />
                       </svg>
                       <span className={s.ping} aria-hidden />
-                      <ToolIcon name={tool.icon} className={s.glyph} />
+                      <ToolLogo name={tool.icon} className={s.glyph} />
                       <span className={s.bdot} aria-hidden />
                     </span>
                   </button>
