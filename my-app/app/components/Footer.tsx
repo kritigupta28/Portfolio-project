@@ -1,6 +1,21 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+import f from "./Footer.module.css";
+
 export default function Footer() {
+  const lineRef = useRef<HTMLParagraphElement>(null);
+  const [struck, setStruck] = useState(false);
+
+  // Replay the strike-through every time the line scrolls into view.
+  useEffect(() => {
+    const el = lineRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setStruck(e.isIntersecting), { threshold: 0.6 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <footer className="py-10 border-t border-[var(--border-subtle)]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -15,7 +30,14 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <a href="#" className="text-xl font-bold gradient-text">KG<span className="text-[var(--text-muted)]">.</span></a>
-          <p className="text-sm text-[var(--text-muted)]">© {new Date().getFullYear()} Kriti Gupta. Crafted with ❤️ & lots of coffee.</p>
+          <p ref={lineRef} className={`text-sm text-[var(--text-muted)] text-center ${struck ? f.struck : ""}`}>
+            © {new Date().getFullYear()} Kriti Gupta. Crafted with ❤️ &amp; lots of{" "}
+            <span className={f.old}>
+              <span className="sr-only">(formerly coffee) </span>
+              <span aria-hidden>coffee</span>
+            </span>{" "}
+            <span className={f.new}>rasgulla</span>.
+          </p>
           <a href="#hero" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors" id="back-to-top">↑ Back to top</a>
         </div>
       </div>

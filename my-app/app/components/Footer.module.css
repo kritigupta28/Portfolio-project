@@ -1,0 +1,66 @@
+/* "coffee" gets crossed out, then "rasgulla" pops in — replayed on every scroll into view. */
+.old {
+  position: relative;
+  display: inline-block;
+  transition: opacity 0.4s ease 0.55s;
+}
+.old::after {
+  content: "";
+  position: absolute;
+  left: -0.1em;
+  right: -0.1em;
+  top: 55%;
+  height: 0.12em;
+  border-radius: 99px;
+  background: #e5484d;
+  transform: scaleX(0) rotate(-6deg);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1) 0.15s;
+}
+.new {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--text-primary);
+  opacity: 0;
+  transform: translateY(0.4em) scale(0.9);
+  transition:
+    opacity 0.35s ease 0.65s,
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.65s;
+}
+
+.struck .old {
+  opacity: 0.55;
+}
+.struck .old::after {
+  transform: scaleX(1) rotate(-6deg);
+}
+.struck .new {
+  opacity: 1;
+  transform: none;
+}
+
+/* Leaving resets instantly so the next visit replays from scratch. */
+:not(.struck) > .old,
+:not(.struck) > .old::after,
+:not(.struck) > .new {
+  transition-duration: 0s;
+  transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .old,
+  .old::after,
+  .new {
+    transition: none !important;
+  }
+  .old {
+    opacity: 0.55;
+  }
+  .old::after {
+    transform: scaleX(1) rotate(-6deg);
+  }
+  .new {
+    opacity: 1;
+    transform: none;
+  }
+}
