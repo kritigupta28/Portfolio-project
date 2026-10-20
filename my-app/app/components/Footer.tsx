@@ -1,9 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import f from "./Footer.module.css";
 
+// Prerendered pages would freeze the build year, so read it in the browser.
+const noopSubscribe = () => () => {};
+const useCurrentYear = () => useSyncExternalStore(noopSubscribe, () => new Date().getFullYear(), () => null);
+
 export default function Footer() {
+  const year = useCurrentYear();
   const lineRef = useRef<HTMLParagraphElement>(null);
   const [struck, setStruck] = useState(false);
 
@@ -31,7 +36,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <a href="#" className="text-xl font-bold gradient-text">KG<span className="text-[var(--text-muted)]">.</span></a>
           <p ref={lineRef} className={`text-sm text-[var(--text-muted)] text-center ${struck ? f.struck : ""}`}>
-            © {new Date().getFullYear()} Kriti Gupta. Crafted with ❤️ &amp; lots of{" "}
+            © {year ?? ""} Kriti Gupta. Crafted with ❤️ &amp; lots of{" "}
             <span className={f.old}>
               <span className="sr-only">(formerly coffee) </span>
               <span aria-hidden>coffee</span>

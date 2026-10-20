@@ -1,10 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+
+// Career start (Wisflux Techlabs, Jan 2023). Full years are counted from here.
+const CAREER_START = new Date(2023, 0, 1);
+
+function fullYearsSince(start: Date, now = new Date()) {
+  let years = now.getFullYear() - start.getFullYear();
+  const beforeAnniversary =
+    now.getMonth() < start.getMonth() || (now.getMonth() === start.getMonth() && now.getDate() < start.getDate());
+  if (beforeAnniversary) years -= 1;
+  return Math.max(years, 0);
+}
+
+// The page is prerendered at build time, so the count is taken in the browser (the stat is still hidden while hydrating).
+const noopSubscribe = () => () => {};
+const useYearsOfExperience = () =>
+  useSyncExternalStore(noopSubscribe, () => fullYearsSince(CAREER_START), () => null);
 
 export default function HeroSection() {
   const [loaded, setLoaded] = useState(false);
+  const years = useYearsOfExperience();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 100);
@@ -62,7 +79,7 @@ export default function HeroSection() {
 
           {/* Right Stat - Experts (no card, matches reference) */}
           <div className={`absolute right-0 md:right-4 bottom-32 lg:bottom-[375px] z-30 hidden lg:block text-right transition-all duration-700 delay-400 ease-out ${loaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">3+ Years</p>
+            <p className="text-4xl md:text-5xl font-black text-[var(--text-primary)]">{years === null ? " " : `${years}+ Years`}</p>
             <p className="text-[var(--text-muted)] text-xs md:text-sm font-semibold uppercase tracking-wider mt-2">In Product Design</p>
             <div className="w-28 h-px bg-white/30 mt-4 ml-auto" />
           </div>
