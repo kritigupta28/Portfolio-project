@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import ScrollReveal from "../ScrollReveal";
-import ToolLogo from "../skills/ToolLogo";
 import SwarmCursors from "./swarm/SwarmCursors";
 import s from "./AiWorkflowSection.module.css";
 
@@ -262,13 +261,7 @@ export default function AiWorkflowSection() {
             </ScrollReveal>
             <ScrollReveal delay={100}>
               <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-                Supercharged with{" "}
-                <span className="whitespace-nowrap">
-                  <span className="gradient-text">AI</span>
-                  <span className={s.ccMark} role="img" aria-label="Claude Code" title="Claude Code">
-                    <ToolLogo name="claudecode" className={s.ccGlyph} />
-                  </span>
-                </span>
+                Supercharged with <span className="gradient-text">AI</span>
               </h2>
             </ScrollReveal>
           </div>
