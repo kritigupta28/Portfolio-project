@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import ScrollReveal from "../ScrollReveal";
 import ToolLogo from "../skills/ToolLogo";
+import SwarmCursors from "./swarm/SwarmCursors";
 import s from "./AiWorkflowSection.module.css";
 
 type Step = {
@@ -75,7 +76,7 @@ const pad = (n: number) => String(n + 1).padStart(2, "0");
 function CaseCard({ mini = false }: { mini?: boolean }) {
   return (
     <div className={`${s.card} ${mini ? s.cardMini : ""}`}>
-      <div className={`${s.thumb} ${s.el}`}>
+      <div className={`${s.thumb} ${s.el}`} data-sw="thumb">
         <svg className={s.thumbX} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
           <line x1="0" y1="0" x2="100" y2="100" vectorEffect="non-scaling-stroke" />
           <line x1="100" y1="0" x2="0" y2="100" vectorEffect="non-scaling-stroke" />
@@ -92,19 +93,19 @@ function CaseCard({ mini = false }: { mini?: boolean }) {
         </div>
       </div>
       <div className={s.body}>
-        <span className={`${s.eyebrow} ${s.el}`}>Research · End-to-End</span>
-        <span className={`${s.title} ${s.el}`}>TeamDay</span>
-        <span className={`${s.desc} ${s.el}`}>
+        <span className={`${s.eyebrow} ${s.el}`} data-sw="eyebrow">Research · End-to-End</span>
+        <span className={`${s.title} ${s.el}`} data-sw="title">TeamDay</span>
+        <span className={`${s.desc} ${s.el}`} data-sw="desc">
           HRM &amp; project management: backlog, sprints and time tracking.
         </span>
         {!mini && (
-          <span className={s.tags}>
+          <span className={s.tags} data-sw="tags">
             {["Research", "Sprints", "Time"].map((t) => (
               <span key={t} className={`${s.tag} ${s.el}`}>{t}</span>
             ))}
           </span>
         )}
-        <span className={`${s.cta} ${s.el}`}>View case study →</span>
+        <span className={`${s.cta} ${s.el}`} data-sw="cta">View case study →</span>
       </div>
     </div>
   );
@@ -137,7 +138,7 @@ function Stage({ step, inline = false }: { step: number; inline?: boolean }) {
 
         {/* canvas */}
         <div className={s.canvas}>
-          <div className={s.cardWrap}>
+          <div className={s.cardWrap} data-sw="card">
             <CaseCard />
 
             {/* Build: one-time shimmer as blocks become components */}
@@ -165,13 +166,13 @@ function Stage({ step, inline = false }: { step: number; inline?: boolean }) {
             </div>
 
             {/* Ship: badge */}
-            <span className={s.badge}>
+            <span className={s.badge} data-sw="badge">
               <span className={s.badgeDot} /> Deployed ✓
             </span>
           </div>
 
           {/* Brief: prompt bubble */}
-          <div className={s.prompt}>
+          <div className={s.prompt} data-sw="prompt">
             <span className={s.promptWho}>Prompt</span>
             Build &lt;CaseCard /&gt; from this frame. Tokens only, 16px radius,
             hover + focus states, stacks under 768px.
@@ -180,15 +181,15 @@ function Stage({ step, inline = false }: { step: number; inline?: boolean }) {
 
           {/* Verify: three widths, light/dark */}
           <div className={s.verify}>
-            <div className={`${s.device} ${s.dPhone}`}>
+            <div className={`${s.device} ${s.dPhone}`} data-sw="phone">
               <div className={s.deviceScreen} data-theme="dark"><CaseCard mini /></div>
               <span className={s.devLabel}>375</span>
             </div>
-            <div className={`${s.device} ${s.dTab}`}>
+            <div className={`${s.device} ${s.dTab}`} data-sw="tablet">
               <div className={s.deviceScreen} data-theme="light"><CaseCard mini /></div>
               <span className={s.devLabel}>768</span>
             </div>
-            <div className={`${s.device} ${s.dDesk}`}>
+            <div className={`${s.device} ${s.dDesk}`} data-sw="desktop">
               <div className={s.flip}>
                 <div className={s.flipPane} data-theme="dark">
                   <div className={s.deviceScreen}><CaseCard mini /></div>
@@ -201,6 +202,8 @@ function Stage({ step, inline = false }: { step: number; inline?: boolean }) {
               <span className={s.devLabel}>1440 · light / dark</span>
             </div>
           </div>
+
+          <SwarmCursors step={step} />
         </div>
 
         {/* console line */}

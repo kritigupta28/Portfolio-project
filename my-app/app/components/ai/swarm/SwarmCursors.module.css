@@ -1,0 +1,102 @@
+/* Multiplayer cursors on the workflow stage. Sized in em so they scale with the stage. */
+.swarm {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: visible;
+}
+.swarm > * {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.cursor {
+  z-index: 3;
+  transform-origin: 0 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  will-change: transform;
+}
+.cursor.visible { opacity: 0.94; }
+.cursor svg {
+  display: block;
+  width: 0.78em;
+  height: 1.22em;
+  overflow: visible;
+  transform-origin: 0 0;
+  filter: drop-shadow(0 0.06em 0.14em rgba(0, 0, 0, 0.3));
+}
+.tag {
+  position: absolute;
+  left: 0.85em;
+  top: 1.05em;
+  padding: 0.28em 0.55em;
+  border-radius: 0.35em 0.9em 0.9em 0.9em;
+  background: var(--c);
+  color: var(--ink);
+  font-family: var(--font-geist-mono, ui-monospace), ui-monospace, monospace;
+  font-size: 0.68em;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.ripple {
+  z-index: 2;
+  width: 0.9em;
+  height: 0.9em;
+  margin: -0.45em 0 0 -0.45em;
+  border: 1.5px solid var(--c);
+  border-radius: 50%;
+  animation: swarmRipple 0.65s ease-out forwards;
+}
+@keyframes swarmRipple { to { scale: 3.6; opacity: 0; } }
+
+.box {
+  z-index: 1;
+  box-sizing: border-box;
+  border: 1px solid var(--c);
+  border-radius: 0.2em;
+  background: color-mix(in srgb, var(--c) 6%, transparent);
+  opacity: 0;
+  scale: 0.97;
+  transition: opacity 0.35s ease, scale 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+}
+.box.boxOn { opacity: 0.9; scale: 1; }
+.box.dashed { border-style: dashed; }
+.box::before,
+.box::after {
+  content: "";
+  position: absolute;
+  width: 0.42em;
+  height: 0.42em;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid var(--c);
+  border-radius: 0.08em;
+}
+.box::before { left: -0.24em; top: -0.24em; }
+.box::after { right: -0.24em; bottom: -0.24em; }
+.dashed::before,
+.dashed::after { display: none; }
+.chip {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  translate: -50% 0.45em;
+  padding: 0.3em 0.55em;
+  border-radius: 0.3em;
+  background: var(--c);
+  color: var(--ink);
+  font-family: var(--font-geist-mono, ui-monospace), ui-monospace, monospace;
+  font-size: 0.66em;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swarm { display: none; }
+}
