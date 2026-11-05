@@ -4,3 +4,7 @@
 # Stray build / tooling artifacts
 my-app/out.css
 my-app/*-check.png
+
+# Playwright MCP screenshots/logs and the local daily worklog
+.playwright-mcp/
+tasks/
